@@ -1,7 +1,7 @@
-Authors:/n
-Liz Nelson/n
-Chase Perez/n
-Juan Ruiz/n
-Mrinal Shukla/n
-Marta Sinitsina/n
-Betelhem Taye/n
+Authors:
+Liz Nelson
+Chase Perez
+Juan Ruiz
+Mrinal Shukla
+Marta Sinitsina
+Betelhem Taye
