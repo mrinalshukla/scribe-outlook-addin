@@ -338,4 +338,7 @@ dist
 # CodeStream plugin
 # https://plugins.jetbrains.com/plugin/12206-codestream
 
+# VSCode Specific stuff
+.vscode/
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,node,microsoftoffice,intellij,webstorm
