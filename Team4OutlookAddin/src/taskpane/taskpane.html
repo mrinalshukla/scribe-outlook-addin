@@ -29,24 +29,25 @@
         <h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
-        <h2 class="ms-font-xl"> Discover what Office Add-ins can do for you today! </h2>
-        <ul class="ms-List ms-welcome__features">
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Ribbon ms-font-xl"></i>
-                <span class="ms-font-m">Achieve more with Office integration</span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Unlock ms-font-xl"></i>
-                <span class="ms-font-m">Unlock features and functionality</span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Design ms-font-xl"></i>
-                <span class="ms-font-m">Create and visualize like a pro</span>
-            </li>
-        </ul>
-        <p class="ms-font-l">Modify the source files, then click <b>Run</b>.</p>
-        <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Run</span>
+        <h2 class="ms-font-xl"> Select account using dropdown box below. </h2>
+        <select id="account">
+            <option value="hide">Select Account...</option>
+            <option value="elizabeth_account">Elizabeth Nelson</option>
+            <option value="chase_account">Chase Perez</option>
+            <option value="juan_account">Juan Ruiz</option>
+            <option value="mrinal_account">Mrinal Shukla</option>
+            <option value="marta_">Marta Sinitsina</option>
+        </select>
+        <h2 class="ms-font-xl"> Select desired signature from list and click the 'add' button. </h2>
+        <select id="signature">
+            <option value="hide">Select Signature...</option>
+            <option value="test_signature_01">Signature 01</option>
+            <option value="test_signature_01">Signature 02</option>
+            <option value="test_signature_01">Signature 03</option>
+        </select>
+        <p class="ms-font-l">To add or remove signatures, click the '<b>Edit Signatures</b>' button below.</p>
+        <div role="button" id="edit_signature_popup" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+            <span class="ms-Button-label">Edit Signatures...</span>
         </div>
     </main>
 </body>
