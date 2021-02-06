@@ -14,12 +14,14 @@ Office.onReady(info => {
   if (info.host === Office.HostType.Outlook) {
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
-    document.getElementById("run").onclick = run;
+    document.getElementById("edit_signature_popup").onclick = run;
   }
 });
 
 export async function run() {
-  /**
-   * Insert your Outlook code here
-   */
+  //Found at https://javascript.info/popup-windows
+  let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+  width=0,height=0,left=-1000,top=-1000`;
+  
+  open('', 'test', params);
 }
