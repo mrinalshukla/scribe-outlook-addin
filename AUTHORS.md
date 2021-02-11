@@ -1,5 +1,5 @@
 Authors:
-Liz Nelson
+Lizzard Nelson
 Juan Ruiz
 Mrinal Shukla
 Chase Perez
