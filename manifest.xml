@@ -4,13 +4,13 @@
   <Version>1.0.0.0</Version>
   <ProviderName>CS3250_Team4</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Team4OutlookAddin"/>
-  <Description DefaultValue="CS3250-002 Team4 Outlook Add-in"/>
+  <DisplayName DefaultValue="Scribe"/>
+  <Description DefaultValue="Metropolitan State University (CS-3250 / Spring 2021) - Team Polaris"/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://msudenver.instructure.com/courses/40121/assignments/520985"/>
   <AppDomains>
-    <AppDomain>https://www.msudenver.com</AppDomain>
+    <AppDomain>https://www.msudenver.edu</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Mailbox"/>

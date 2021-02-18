@@ -1,9 +1,9 @@
 {
-  "name": "team4-outlook-addin",
+  "name": "scribe-outlook-addin",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/enelso29/main.git"
+    "url": "https://github.com/mrinalshukla/scribe-outlook-addin.git"
   },
   "license": "MIT",
   "config": {
