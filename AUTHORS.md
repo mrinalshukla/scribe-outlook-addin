@@ -1,4 +1,4 @@
-#Authors
+# Authors
 - Liz Nelson
 - Juan Ruiz
 - Mrinal Shukla
