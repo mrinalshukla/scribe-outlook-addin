@@ -20,7 +20,7 @@ Office.onReady(info => {
 
 export async function run() {
   //Found at https://javascript.info/popup-windows
-  let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+  const params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
   width=0,height=0,left=-1000,top=-1000`;
   
   open('', 'test', params);
