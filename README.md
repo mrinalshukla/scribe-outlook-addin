@@ -1,6 +1,8 @@
-[![buildSnapshot](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build.yml)
-[![staticAnalysis](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/sonar-scan.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/sonar-scan.yml)
-[![npmPublish](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/npm-publish.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/npm-publish.yml)
+[![build snapshot](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build.yml)
+[![quality gate](https://sonarcloud.io/api/project_badges/measure?project=mrinalshukla_scribe-outlook-addin&metric=alert_status)](https://sonarcloud.io/dashboard?id=mrinalshukla_scribe-outlook-addin)
+[![code coverage](https://sonarcloud.io/api/project_badges/measure?project=mrinalshukla_scribe-outlook-addin&metric=coverage)](https://sonarcloud.io/dashboard?id=mrinalshukla_scribe-outlook-addin)
+[![code smells](https://sonarcloud.io/api/project_badges/measure?project=mrinalshukla_scribe-outlook-addin&metric=code_smells)](https://sonarcloud.io/dashboard?id=mrinalshukla_scribe-outlook-addin)
+[![npm publish](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/npm-publish.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/npm-publish.yml)
 
 
 # Office-Addin-TaskPane-JS
