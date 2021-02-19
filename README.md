@@ -1,4 +1,4 @@
-[![build snapshot](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build-snapshot.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build-snapshot.yml)
+[![build snapshot](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build-snapshot.yml/badge.svg)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build-snapshot.yml)
 [![quality gate](https://sonarcloud.io/api/project_badges/measure?project=mrinalshukla_scribe-outlook-addin&metric=alert_status)](https://sonarcloud.io/dashboard?id=mrinalshukla_scribe-outlook-addin)
 [![code coverage](https://sonarcloud.io/api/project_badges/measure?project=mrinalshukla_scribe-outlook-addin&metric=coverage)](https://sonarcloud.io/dashboard?id=mrinalshukla_scribe-outlook-addin)
 [![code smells](https://sonarcloud.io/api/project_badges/measure?project=mrinalshukla_scribe-outlook-addin&metric=code_smells)](https://sonarcloud.io/dashboard?id=mrinalshukla_scribe-outlook-addin)
