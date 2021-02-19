@@ -1,5 +1,5 @@
 [![buildSnapshot](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/build.yml)
-[![staticAnalysis](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/sonar-scan.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/sonar-scan.yml)
+[![sonar](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/sonar-scan.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/sonar-scan.yml)
 [![npmPublish](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/npm-publish.yml/badge.svg?branch=main)](https://github.com/mrinalshukla/scribe-outlook-addin/actions/workflows/npm-publish.yml)
 
 
