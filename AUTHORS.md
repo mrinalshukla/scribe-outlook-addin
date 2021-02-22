@@ -3,4 +3,4 @@
 - Juan Ruiz
 - Mrinal Shukla
 - Chase Perez
-- Marta Sinitsina
+- Marta the Great
