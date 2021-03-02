@@ -17,11 +17,38 @@
     <link href="editsignatures.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="ms-font-1">
+<body class="ms-font-1" style="background-color:rgba(9, 210, 255, 0.192);">
     <main>
-        <div class="ms-font-1">Hello World!</div>
+        <style>
+            h1 {text-align: center;}
+            h2 {text-align: center;}
+            div {text-align: center;}
+        </style>
+        <h1 class="ms-font-xl"><strong>Edit Signatures</strong></h1>
         <div role="button" id="do_something" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
             <span class="ms-Button-label">Useless Button</span>
+        </div>
+        <div>
+        <form action="/action_page.php">
+            <h2 class="ms-font-xl"> Create new signature here. </h2>
+            <input type="text" id="fname" name="fname"><br><br>
+            <input type="button" value="Add">
+          </form>
+        </div>
+        <div>
+          <h2 class="ms-font-xl"> Select signature you want to edit. </h2>
+          <select id="signature">
+              <option value="hide">Select Signature...</option>
+              <option value="test_signature_01">Signature 01</option>
+              <option value="test_signature_01">Signature 02</option>
+              <option value="test_signature_01">Signature 03</option>
+          </select>
+        </div>
+        <div>
+          <form action="/action_page.php">
+            <br>
+            <input type="button" value="Edit">
+          </form>
         </div>
     </main>
 </body>
