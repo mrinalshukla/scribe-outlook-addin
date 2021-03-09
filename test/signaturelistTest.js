@@ -3,7 +3,7 @@ const returnQuote = require('../src/signaturelist/signaturelist.js').returnQuote
 
 describe('Dictionary', function() {
     it('Returns string', function() {
-        let quote = returnQuote(Signature);
+        let quote = returnQuote("Signature");
         assert.typeOf(quote, "string");
     });
 });
@@ -21,5 +21,3 @@ describe('Dictionary', function() {
         assert.equal(quote, "Time");
     });
 });
-
-//Add tests to catch errors (Make sure input is string)

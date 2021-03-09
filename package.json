@@ -27,7 +27,10 @@
     "watch": "webpack --mode development --watch",
     "test": "mocha || true"
   },
-  "dependencies": {},
+  "dependencies": {
+    "chai": "^4.3.3",
+    "mocha": "^8.3.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/polyfill": "^7.11.5",
