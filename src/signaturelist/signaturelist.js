@@ -12,6 +12,7 @@ module.exports = {
         //This will create a new key, value pair if it does not exist or overwrite an existing
         //key, value pair if already in database
         signatureDB[signatureTitle] = signatureContents;
+        return signatureDB;
     },
     
     removeSignature: function(signatureDB, signatureTitle) {
@@ -22,5 +23,6 @@ module.exports = {
         else {
             console.log("There is no existing item with the provided title.");
         }
+        return signatureDB;
     }
 }
