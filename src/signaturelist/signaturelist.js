@@ -1,6 +1,6 @@
-var signatureDataBase = {"Signature":"Quote",
-            "Wow":"Hello",
-            "Einstein":"Time"};
+var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs',
+            'JFK':'"Those who dare to fail miserably can achieve greatly." -John F. Kennedy',
+            'Plato':'"The greatest wealth is to live content with little." - Plato'};
 
 module.exports = {
     returnQuote: function(Quote1) {
