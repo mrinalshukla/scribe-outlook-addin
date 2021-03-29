@@ -13,8 +13,7 @@ var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs'
 
 module.exports = {
     returnQuote: function(Quote1) {
-    var quote  = signatureDataBase[Quote1];
-    return quote;
+    return signatureDataBase[Quote1];
     },
 
     addSignature: function(signatureDB, signatureTitle, signatureContents) {
