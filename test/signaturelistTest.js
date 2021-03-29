@@ -3,6 +3,7 @@ const signatureDataBase = {"Hello" : "World"};
 const returnQuote = require('../src/signaturelist/signaturelist.js').returnQuote;
 const addSignature = require('../src/signaturelist/signaturelist.js').addSignature;
 const removeSignature = require('../src/signaturelist/signaturelist.js').removeSignature;
+const listSignatures = require('../src.signaturelist/signaturelist.js').listSignatures;
 
 describe('Dictionary', function() {
     it('Returns a string', function() {
@@ -57,5 +58,12 @@ describe('Failing to Remove a Signature', function() {
     it('Attempts to remove a signature that doesnt exist within the database', function() {
         failedRemoval = removeSignature(signatureDataBase, "Foo");
         assert.equal(failedRemoval, signatureDataBase);
+    });
+});
+
+describe('Display Signature List', function() {
+    it('Display the signatures in the database as a list', function() {
+        displayList = displaySignatures(signatureDataBase, "");
+        assert.equal(displayList, signatureDataBase);
     });
 });
