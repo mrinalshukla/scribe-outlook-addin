@@ -23,12 +23,11 @@ module.exports = {
         signatureDB[signatureTitle] = signatureContents;
         return signatureDB;
     },
-    
     removeSignature: function(signatureDB, signatureTitle) {
         //This will remove a key, value pair from the database if it exists
         if(signatureDB.hasOwnProperty(signatureTitle)) {
-        delete signatureDB[signatureTitle];
-            }
+            delete signatureDB[signatureTitle];
+         }
         else {
             console.log("There is no existing item with the provided title.");
         }
