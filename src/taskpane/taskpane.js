@@ -15,6 +15,7 @@ Office.onReady(info => {
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("edit_signature_popup").onclick = run;
+    document.getElementById("add_signature").onclick = applySignature;
   }
 });
 
@@ -23,4 +24,9 @@ export async function run() {
   const params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
   width=0,height=0,left=-1000,top=-1000`;
   open('https://localhost:3000/src/editsignatures/editsignatures.html', 'test', params);
+}
+
+function applySignature() {
+  //Inserts a hardcoded signature at cursor position
+  Office.context.mailbox.item.body.setSelectedDataAsync("Chase Perez - Team 4 Polaris");
 }
