@@ -2,14 +2,33 @@ Office.onReady(info => {
     if (info.host === Office.HostType.Outlook) {
       document.getElementById("sideload-msg").style.display = "none";
       document.getElementById("app-body").style.display = "flex";
-      document.getElementById("edit_signature_popup").onclick = listSignatures;
+      document.getElementById("edit_signature_popup").onclick = displaySignatures;
     }
   });
 
-
+// Initial Signature Database
 var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs',
             'JFK':'"Those who dare to fail miserably can achieve greatly." -John F. Kennedy',
             'Plato':'"The greatest wealth is to live content with little." - Plato'};
+
+// Dropdown List Function
+function displaySignatures () {
+    document.getElementById("signatureDropdown").classList.toggle("show");
+}
+
+// Close Dropdown if user clicks outside of the list
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdown = document.getElementsByClassName("dropdown-list");
+        var x;
+        for (x = 0; x < dropdown.length; x++) {
+            var openMenu = dropdown[x];
+            if (openMenu.classList.contains('show')) {
+                openMenu.classList.remove('show');
+            }
+        }
+    }
+}
 
 module.exports = {
     returnQuote: function(Quote1) {

@@ -24,25 +24,14 @@
     <main>
         <style>
             h1 {text-align: center;}
-        </style>
-        <h1 class="ms-font-xl"><strong>Signatures</strong></h1>
-
-        <div>
-        <form action="/action_page.php">
-            <h2 class="ms-font-xl"> Select Signature: </h2>
-            <input type="text" id="fname" name="fname"><br><br>
-            <input type="button" value="Select">
-          </form>
+        </style>       
+        <div class="dropdown">
+            <button onclick="displaySignatures()" class="dropbtn">Signatures:</button>
+            <div id="signatureDropdown" class="dropdown-list">
+                <a href="#">Signature 1</a>
+            </div>
         </div>
-        
-        <select id="signature_list">
-
-            <option value="hide">Signature Database</option>
-            <option value="signature_1">Signature 01</option>
-            <option value="signature_2">Signature 02</option>
-            <option value="signature_3">Signature 03</option>
-        </select>
-
-
     </main>
 </body>
+
+<!-- Referenced code: https://www.w3schools.com/howto/howto_js_dropdown.asp -->
