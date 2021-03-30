@@ -5,10 +5,42 @@ Office.onReady(info => {
       document.getElementById("edit_signature_popup").onclick = displaySignatures;
     }
   });
+
+Office.initialize = initializeStorage;
+
 // Initial Signature Databse
 var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs',
             'JFK':'"Those who dare to fail miserably can achieve greatly." -John F. Kennedy',
             'Plato':'"The greatest wealth is to live content with little." - Plato'};
+
+var myStorage = window.localStorage;
+
+/* var signatureList = [{
+    title : 'Steve Jobs',
+    signature : '"Stay hungry, stay foolish." -Steve Jobs'
+},
+{
+    title : 'JFK',
+    message : '"Those who dare to fail miserably can achieve greatly." -John F. Kennedy'
+},
+{
+    title : 'Plato',
+    message : '"The greatest wealth is to live content with little." - Plato'
+}] */
+
+/*function returnQuote (Quote) {
+    var quote = localStorage.getItem[Quote];
+    return quote;
+}*/
+
+function addQuote (title) {
+    localStorage.setItem(title, signatureList(title))
+
+}
+
+/*function initializeStorage () {
+    myStorage = window.localStorage;
+}*/
 
 // Dropdown List Function
 function displaySignatures () {
@@ -34,11 +66,11 @@ module.exports = {
     return signatureDataBase[Quote1];
     },
 
-    addSignature: function(signatureDB, signatureTitle, signatureContents) {
+    addSignature: function(signatureTitle, signatureContents) {
         //This will create a new key, value pair if it does not exist or overwrite an existing
         //key, value pair if already in database
-        signatureDB[signatureTitle] = signatureContents;
-        return signatureDB;
+        myStorage.setItem(signatureTitle) = signatureContents;
+        return myStorage;
     },
     removeSignature: function(signatureDB, signatureTitle) {
         //This will remove a key, value pair from the database if it exists
