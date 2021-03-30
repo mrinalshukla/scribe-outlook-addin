@@ -5,8 +5,7 @@ Office.onReady(info => {
       document.getElementById("edit_signature_popup").onclick = displaySignatures;
     }
   });
-
-// Initial Signature Database
+// Initial Signature Databse
 var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs',
             'JFK':'"Those who dare to fail miserably can achieve greatly." -John F. Kennedy',
             'Plato':'"The greatest wealth is to live content with little." - Plato'};
@@ -16,7 +15,7 @@ function displaySignatures () {
     document.getElementById("signatureDropdown").classList.toggle("show");
 }
 
-// Close Dropdown if user clicks outside of the list
+// Close Dropdown if user clicks outside of the menu
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
         var dropdown = document.getElementsByClassName("dropdown-list");

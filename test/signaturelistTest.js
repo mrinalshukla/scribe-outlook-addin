@@ -4,6 +4,7 @@ const returnQuote = require('../src/signaturelist/signaturelist.js').returnQuote
 const addSignature = require('../src/signaturelist/signaturelist.js').addSignature;
 const removeSignature = require('../src/signaturelist/signaturelist.js').removeSignature;
 const listSignatures = require('../src.signaturelist/signaturelist.js').listSignatures;
+const displaySignatures = require('../src/signaturelist/signaturelist.js').displaySignatures;
 
 describe('Dictionary', function() {
     it('Returns a string', function() {
@@ -61,9 +62,16 @@ describe('Failing to Remove a Signature', function() {
     });
 });
 
+describe('Display Signature Dropdown', function() {
+    it('Display the signatures in the database in a dropdown menu', function() {
+        displayDropdown = displaySignatures(signatureDataBase, "Steve Jobs");
+        assert.equal(displayDropdown, signatureDataBase);
+    });
+});
+
 describe('Display Signature List', function() {
     it('Display the signatures in the database as a list', function() {
-        displayList = displaySignatures(signatureDataBase, "");
+        displayList = listSignatures(signatureDataBase, "Steve Jobs");
         assert.equal(displayList, signatureDataBase);
     });
 });
