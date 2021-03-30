@@ -38,6 +38,7 @@ module.exports = {
         //This will create a new key, value pair if it does not exist or overwrite an existing
         //key, value pair if already in database
         signatureDB[signatureTitle] = signatureContents;
+        signatureDataBase.push(signatureTitle);
         return signatureDB;
     },
     removeSignature: function(signatureDB, signatureTitle) {
