@@ -39,6 +39,12 @@
               localStorage.setItem(document.getElementById("signatureTitle").value, document.getElementById("signatureContents").value);
             }
             </script>
+            <button onclick="removeSignature()">Delete</button>
+            <script>
+            function removeSignature() {
+            localStorage.removeItem(document.getElementById("signatureTitle").value, document.getElementById("signatureContents").value);
+            }
+            </script>
         </div>
         <div>
           <h2 class="ms-font-xl"> Select signature you want to edit. </h2>
