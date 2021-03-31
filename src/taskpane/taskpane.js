@@ -30,6 +30,5 @@ export async function run() {
 
 function applySignature() {
   //Inserts a hardcoded signature at cursor position
-  //Office.context.mailbox.item.body.setSelectedDataAsync("Chase Perez - Team 4 Polaris");
-  Office.context.mailbox.item.body.setSelectedDataAsync(localStorage.getItem('test'));
+  Office.context.mailbox.item.body.setSelectedDataAsync("Chase Perez - Team 4 Polaris");
 }

@@ -7,18 +7,18 @@ var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs'
 
 var myStorage = window.localStorage;
 
-/* var signatureList = [{
+var signatureList = [{
     title : 'Steve Jobs',
-    signature : '"Stay hungry, stay foolish." -Steve Jobs'
+    contents : '"Stay hungry, stay foolish." -Steve Jobs'
 },
 {
     title : 'JFK',
-    message : '"Those who dare to fail miserably can achieve greatly." -John F. Kennedy'
+    contents: '"Those who dare to fail miserably can achieve greatly." -John F. Kennedy'
 },
 {
     title : 'Plato',
-    message : '"The greatest wealth is to live content with little." - Plato'
-}] */
+    contents : '"The greatest wealth is to live content with little." - Plato'
+}] 
 
 /*function returnQuote (Quote) {
     var quote = localStorage.getItem[Quote];
@@ -61,10 +61,11 @@ module.exports = {
     addSignature: function() {
         //This will create a new key, value pair if it does not exist or overwrite an existing
         //key, value pair if already in database
-        var title = document.getElementById("signatureTitle").value;
-        var contents = document.getElementById("signatureContents").value;
-        myStorage.setItem(title) = contents;
-        //return myStorage;
+        var newSignature = {title : document.getElementById("signatureTitle").value, 
+                            contents : document.getElementById("signatureContents").value}
+
+        signatureList.push(newSignature);
+        myStorage.setItem(newSignature.title, newSignature.contents);
     },
     removeSignature: function(signatureDB, signatureTitle) {
         //This will remove a key, value pair from the database if it exists
