@@ -1,3 +1,5 @@
+<script>import { addSignature } from  "../signaturelist/signaturelist"</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,14 +27,14 @@
             div {text-align: center;}
         </style>
         <h1 class="ms-font-xl"><strong>Edit Signatures</strong></h1>
-        <div role="button" id="do_something" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Useless Button</span>
-        </div>
         <div>
         <form action="/action_page.php">
             <h2 class="ms-font-xl"> Create new signature here. </h2>
-            <input type="text" id="fname" name="fname"><br><br>
-            <input type="button" value="Add">
+            <h2 class="ms-font-xl"><small>Title:</small></h2>
+            <input type="text" id="signatureTitle" name="signatureTitle"><br><br>
+            <h2 class="ms-font-xl"><small>Signature:</small></h2>
+            <input type="text" id="signatureContents" name="signatureContents"><br><br>
+            <button onclick="addSignature()">Add</button>
           </form>
         </div>
         <div>

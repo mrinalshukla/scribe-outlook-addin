@@ -58,11 +58,13 @@ module.exports = {
     return signatureDataBase[Quote1];
     },
 
-    addSignature: function(signatureTitle, signatureContents) {
+    addSignature: function() {
         //This will create a new key, value pair if it does not exist or overwrite an existing
         //key, value pair if already in database
-        myStorage.setItem(signatureTitle) = signatureContents;
-        return myStorage;
+        var title = document.getElementById("signatureTitle").value;
+        var contents = document.getElementById("signatureContents").value;
+        myStorage.setItem(title) = contents;
+        //return myStorage;
     },
     removeSignature: function(signatureDB, signatureTitle) {
         //This will remove a key, value pair from the database if it exists
