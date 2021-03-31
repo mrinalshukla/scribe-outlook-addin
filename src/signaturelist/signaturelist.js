@@ -1,19 +1,14 @@
-Office.onReady(info => {
-    if (info.host === Office.HostType.Outlook) {
-      document.getElementById("sideload-msg").style.display = "none";
-      document.getElementById("app-body").style.display = "flex";
-      document.getElementById("edit_signature_popup").onclick = displaySignatures;
-    }
-  });
 
-Office.initialize = initializeStorage;
+//TODO Re-enable when ready to work on storage =>
+// Office.initialize = initializeStorage;
 
 // Initial Signature Databse
 var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs',
             'JFK':'"Those who dare to fail miserably can achieve greatly." -John F. Kennedy',
             'Plato':'"The greatest wealth is to live content with little." - Plato'};
 
-var myStorage = window.localStorage;
+//TODO Re-enable when ready to work on storage =>
+// var myStorage = window.localStorage;
 
 /* var signatureList = [{
     title : 'Steve Jobs',
@@ -69,7 +64,8 @@ module.exports = {
     addSignature: function(signatureTitle, signatureContents) {
         //This will create a new key, value pair if it does not exist or overwrite an existing
         //key, value pair if already in database
-        myStorage.setItem(signatureTitle) = signatureContents;
+        //TODO re-enable for storage
+        // myStorage.setItem(signatureTitle) = signatureContents;
         return myStorage;
     },
     removeSignature: function(signatureDB, signatureTitle) {
@@ -87,5 +83,7 @@ module.exports = {
         const params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
         width=0,height=0,left=-1000,top=-1000`;
         open('https://localhost:3000/src/signaturelist.html', 'test', params)
-    }
+    },
+
+    displaySignatures: displaySignatures
 }

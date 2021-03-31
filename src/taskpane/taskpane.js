@@ -7,15 +7,17 @@
 import "../../assets/icon-16.png";
 import "../../assets/icon-32.png";
 import "../../assets/icon-80.png";
+import { displaySignatures } from  "../signaturelist/signaturelist";
 
 /* global document, Office */
 
 Office.onReady(info => {
-  if (info.host === Office.HostType.Outlook) {
-    document.getElementById("sideload-msg").style.display = "none";
-    document.getElementById("app-body").style.display = "flex";
-    document.getElementById("edit_signature_popup").onclick = run;
-    document.getElementById("add_signature").onclick = applySignature;
+    if (info.host === Office.HostType.Outlook) {
+        document.getElementById("sideload-msg").style.display = "none";
+        document.getElementById("app-body").style.display = "flex";
+        document.getElementById("edit_signature_popup").onclick = run;
+        document.getElementById("add_signature").onclick = applySignature;
+        document.getElementById("edit_signature_popup").onclick =  displaySignatures;
   }
 });
 
