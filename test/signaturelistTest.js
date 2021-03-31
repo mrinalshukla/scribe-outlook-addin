@@ -6,11 +6,6 @@ const removeSignature = require('../src/signaturelist/signaturelist.js').removeS
 const listSignatures = require('../src.signaturelist/signaturelist.js').listSignatures;
 const displaySignatures = require('../src/signaturelist/signaturelist.js').displaySignatures;
 
-/*Office.onReady(info => {
-    if (info.host === Office.HostType.Outlook) {
-    }
-  });*/
-
 describe('Dictionary', function() {
     it('Returns a string', function() {
         let quote = returnQuote('Steve Jobs');
@@ -42,7 +37,7 @@ describe('Dictionary', function() {
 describe('Adding a Signature', function() {
     it('Adds a new signature to the database', function() {
         addSignature("Adding", "Signature");
-        assert.equal(window.localStorage.getItem("Adding"), "Signature");
+        assert.equal(localStorage.getItem("Adding"), "Signature");
     });
 });
 

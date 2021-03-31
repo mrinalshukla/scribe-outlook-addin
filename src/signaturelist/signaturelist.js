@@ -1,14 +1,11 @@
-
-//TODO Re-enable when ready to work on storage =>
-// Office.initialize = initializeStorage;
+Office.initialize = initializeStorage;
 
 // Initial Signature Databse
 var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs',
             'JFK':'"Those who dare to fail miserably can achieve greatly." -John F. Kennedy',
             'Plato':'"The greatest wealth is to live content with little." - Plato'};
 
-//TODO Re-enable when ready to work on storage =>
-// var myStorage = window.localStorage;
+var myStorage = window.localStorage;
 
 /* var signatureList = [{
     title : 'Steve Jobs',
@@ -28,14 +25,14 @@ var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs'
     return quote;
 }*/
 
-function addQuote (title) {
+/*function addQuote (title) {
     localStorage.setItem(title, signatureList(title))
 
-}
-
-/*function initializeStorage () {
-    myStorage = window.localStorage;
 }*/
+
+function initializeStorage () {
+    myStorage = window.localStorage;
+}
 
 // Dropdown List Function
 function displaySignatures () {
@@ -64,8 +61,7 @@ module.exports = {
     addSignature: function(signatureTitle, signatureContents) {
         //This will create a new key, value pair if it does not exist or overwrite an existing
         //key, value pair if already in database
-        //TODO re-enable for storage
-        // myStorage.setItem(signatureTitle) = signatureContents;
+        myStorage.setItem(signatureTitle) = signatureContents;
         return myStorage;
     },
     removeSignature: function(signatureDB, signatureTitle) {
