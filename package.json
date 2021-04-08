@@ -24,9 +24,13 @@
     "start:web": "office-addin-debugging start manifest.xml web",
     "stop": "office-addin-debugging stop manifest.xml",
     "validate": "office-addin-manifest validate manifest.xml",
-    "watch": "webpack --mode development --watch"
+    "watch": "webpack --mode development --watch",
+    "test": "mocha || true"
   },
-  "dependencies": {},
+  "dependencies": {
+    "chai": "^4.3.3",
+    "mocha": "^8.3.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/polyfill": "^7.11.5",
@@ -38,8 +42,8 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.1.1",
     "eslint-config-office-addins": "^1.0.19",
-    "find-process": "^1.4.3",
     "file-loader": "^4.2.0",
+    "find-process": "^1.4.3",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.5.0",
     "office-addin-cli": "^1.0.13",
