@@ -7,7 +7,7 @@
 import "../../assets/icon-16.png";
 import "../../assets/icon-32.png";
 import "../../assets/icon-80.png";
-import { displaySignatures } from  "../signaturelist/signaturelist";
+import { displaySignatures } from "../signaturedropdown/signaturedropdown";
 
 /* global document, Office */
 
