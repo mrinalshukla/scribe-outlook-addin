@@ -16,7 +16,7 @@ module.exports = async (env, options) => {
     entry: {
       polyfill: "@babel/polyfill",
       taskpane: "./src/taskpane/taskpane.js",
-      commands: "./src/commands/commands.js"
+      commands: "./src/signaturecommands/signaturecommands.js"
     },
     resolve: {
       extensions: [".ts", ".tsx", ".html", ".js"]
@@ -73,8 +73,8 @@ module.exports = async (env, options) => {
         }
       ]}),
       new HtmlWebpackPlugin({
-        filename: "commands.html",
-        template: "./src/commands/commands.html",
+        filename: "signaturecommands.html",
+        template: "./src/signaturecommands/signaturecommands.html",
         chunks: ["polyfill", "commands"]
       })
     ],
