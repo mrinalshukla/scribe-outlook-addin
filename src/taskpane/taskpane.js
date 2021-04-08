@@ -17,7 +17,7 @@ Office.onReady(info => {
         document.getElementById("app-body").style.display = "flex";
         document.getElementById("edit_signature_popup").onclick = run;
         document.getElementById("add_signature").onclick = applySignature;
-        //document.getElementById("edit_signature_popup").onclick =  displaySignatures;
+        document.getElementById("edit_signature_popup").onclick =  displaySignatures;
   }
 });
 

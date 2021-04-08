@@ -64,8 +64,15 @@ module.exports = {
         var title = document.getElementById("signatureTitle").value;
         var contents = document.getElementById("signatureContents").value;
         myStorage.setItem(title) = contents;
-        //return myStorage;
+        signatureDataBase.push(signature);
+        var addDrop = document.getElementById(signatureDropdown);
+        var item = document.createElement("option");
+        option.value = signature.signatureTitle;
+        addDrop.appendChild(item);
+        myStorage.setItem(signatureTitle) = signatureContents;
+        return myStorage;
     },
+
     removeSignature: function(signatureDB, signatureTitle) {
         //This will remove a key, value pair from the database if it exists
         if(signatureDB.hasOwnProperty(signatureTitle)) {
@@ -83,5 +90,5 @@ module.exports = {
         open('https://localhost:3000/src/signaturelist.html', 'test', params)
     },
 
-    displaySignatures: displaySignatures
+    //displaySignatures: displaySignatures
 }
