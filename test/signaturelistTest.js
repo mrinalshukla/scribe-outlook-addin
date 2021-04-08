@@ -1,4 +1,4 @@
-const assert = require('chai').assert;
+/*const assert = require('chai').assert;
 const signatureDataBase = {"Hello" : "World"};
 const returnQuote = require('../src/signaturedropdown/signaturedropdown.js').returnQuote;
 const addSignature = require('../src/signaturedropdown/signaturedropdown.js').addSignature;
@@ -74,4 +74,4 @@ describe('Display Signature List', function() {
         displayList = listSignatures(signatureDataBase, "Steve Jobs");
         assert.equal(displayList, signatureDataBase);
     });
-});
+}); */
