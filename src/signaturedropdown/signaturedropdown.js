@@ -7,7 +7,7 @@ var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs'
 
 var myStorage = window.localStorage;
 
-var signatureList = [{
+var signaturedropdown = [{
     title : 'Steve Jobs',
     contents : '"Stay hungry, stay foolish." -Steve Jobs'
 },
@@ -26,7 +26,7 @@ var signatureList = [{
 }*/
 
 /*function addQuote (title) {
-    localStorage.setItem(title, signatureList(title))
+    localStorage.setItem(title, signaturedropdown(title))
 
 }*/
 
@@ -64,7 +64,7 @@ module.exports = {
         var newSignature = {title : document.getElementById("signatureTitle").value, 
                             contents : document.getElementById("signatureContents").value}
 
-        signatureList.push(newSignature);
+        signaturedropdown.push(newSignature);
         myStorage.setItem(newSignature.title, newSignature.contents);
     },
     removeSignature: function(signatureDB, signatureTitle) {
