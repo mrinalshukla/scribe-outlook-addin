@@ -1,10 +1,10 @@
 const assert = require('chai').assert;
 const signatureDataBase = {"Hello" : "World"};
-const returnQuote = require('../src/signaturelist/signaturelist.js').returnQuote;
-const addSignature = require('../src/signaturelist/signaturelist.js').addSignature;
-const removeSignature = require('../src/signaturelist/signaturelist.js').removeSignature;
+const returnQuote = require('../src/signaturedropdown/signaturedropdown.js').returnQuote;
+const addSignature = require('../src/signaturedropdown/signaturedropdown.js').addSignature;
+const removeSignature = require('../src/signaturedropdown/signaturedropdown.js').removeSignature;
 const listSignatures = require('../src.signaturelist/signaturelist.js').listSignatures;
-const displaySignatures = require('../src/signaturelist/signaturelist.js').displaySignatures;
+const displaySignatures = require('../src/signaturedropdown/signaturedropdown.js').displaySignatures;
 
 describe('Dictionary', function() {
     it('Returns a string', function() {

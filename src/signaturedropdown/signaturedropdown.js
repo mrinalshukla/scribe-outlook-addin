@@ -7,38 +7,6 @@ var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs'
 
 var myStorage = window.localStorage;
 
-/* var signatureList = [{
-    title : 'Steve Jobs',
-    signature : '"Stay hungry, stay foolish." -Steve Jobs'
-},
-{
-    title : 'JFK',
-    message : '"Those who dare to fail miserably can achieve greatly." -John F. Kennedy'
-},
-{
-    title : 'Plato',
-    message : '"The greatest wealth is to live content with little." - Plato'
-}] */
-
-/*function returnQuote (Quote) {
-    var quote = localStorage.getItem[Quote];
-    return quote;
-}*/
-
-/*function addQuote (title) {
-    localStorage.setItem(title, signatureList(title))
-
-}*/
-
-function initializeStorage () {
-    myStorage = window.localStorage;
-}
-
-// Dropdown List Function
-function displaySignatures () {
-    document.getElementById("signatureDropdown").classList.toggle("show");
-}
-
 // Close Dropdown if user clicks outside of the menu
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
@@ -58,22 +26,29 @@ module.exports = {
     return signatureDataBase[Quote1];
     },
 
-    addSignature: function() {
+    addSign: function() {
         //This will create a new key, value pair if it does not exist or overwrite an existing
         //key, value pair if already in database
         var title = document.getElementById("signatureTitle").value;
         var contents = document.getElementById("signatureContents").value;
         myStorage.setItem(title) = contents;
+        var signature = {
+            signatureTitle: keys[x],
+            signatureContents: localStorage.getItem(keys[x]),
+        }
         signatureDataBase.push(signature);
-        var addDrop = document.getElementById(signatureDropdown);
-        var item = document.createElement("option");
-        option.value = signature.signatureTitle;
+        var newSig = document.querySelector("signatureTitle").value;
+        var addDrop = document.getElementById("signatureDropdown");
+        var item = document.createElement("item");
+        item.appendChild(document.createTextNode(newSig));
         addDrop.appendChild(item);
-        myStorage.setItem(signatureTitle) = signatureContents;
-        return myStorage;
+
+        console.log(newSig);
+       // myStorage.setItem(signatureTitle) = signatureContents;
+       //return myStorage;
     },
 
-    removeSignature: function(signatureDB, signatureTitle) {
+    removeSign: function(signatureDataBase, signatureTitle) {
         //This will remove a key, value pair from the database if it exists
         if(signatureDB.hasOwnProperty(signatureTitle)) {
             delete signatureDB[signatureTitle];
@@ -84,11 +59,18 @@ module.exports = {
         return signatureDB;
     },
 
-    listSignatures: function(signatureDB, signatureTitle) {
+    listSignatures: function(signatureDataBase, signatureTitle) {
         const params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
         width=0,height=0,left=-1000,top=-1000`;
         open('https://localhost:3000/src/signaturelist.html', 'test', params)
     },
 
-    //displaySignatures: displaySignatures
+    initializeStorage: function () {
+        myStorage = window.localStorage;
+    },
+    
+    // Dropdown List Function
+    displaySignatures: function () {
+        document.getElementById("signatureDropdown").classList.toggle("show");
+    },
 }

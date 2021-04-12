@@ -1,5 +1,4 @@
-<script>import { addSignature } from  "../signaturelist/signaturelist"</script>
-
+<script>import { addSign } from "../signaturedropdown/signaturedropdown"</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,26 +28,35 @@
         </style>
         <h1 class="ms-font-xl"><strong>Edit Signatures</strong></h1>
         <div>
-        <form action="/action_page.php">
             <h2 class="ms-font-xl"> Create new signature here. </h2>
             <h2 class="ms-font-xl"><small>Title:</small></h2>
-            <input type="text" id="signatureTitle" name="signatureTitle"><br><br>
+            <input type="text" id="signatureTitle" name="signatureTitle"><br>
             <h2 class="ms-font-xl"><small>Signature:</small></h2>
             <input type="text" id="signatureContents" name="signatureContents"><br><br>
             <button onclick="addSignature()">Add</button>
-          </form>
+            <script>
+            function addSignature() {
+              localStorage.setItem(document.getElementById("signatureTitle").value, document.getElementById("signatureContents").value);
+            }
+            </script>
+            <button onclick="removeSignature()">Delete</button>
+            <script>
+            function removeSignature() {
+            localStorage.removeItem(document.getElementById("signatureTitle").value, document.getElementById("signatureContents").value);
+            }
+            </script>
         </div>
         <div>
           <h2 class="ms-font-xl"> Select signature you want to edit. </h2>
-          <select id="signature">
-              <option value="hide">Select Signature...</option>
-              <option value="test_signature_01">Signature 01</option>
-              <option value="test_signature_01">Signature 02</option>
-              <option value="test_signature_01">Signature 03</option>
+          <div class="dropdown">
+            <button onclick="displaySignatures()" class="dropbtn">Signatures:</button>
+            <div id="signatureDropdown" class="dropdown-list">
+            </div>
+        </div>
           </select>
         </div>
         <div>
-          <form action="/action_page.php">
+          <form action="/action_page.php"></form>
             <br>
             <input type="button" value="Edit">
           </form>
