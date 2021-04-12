@@ -29,7 +29,7 @@ ul {
     display: inline-block;
   }
 
-  .dropdown-list {
+  .dropdownList {
     display: none;
     position: absolute;
     background-color: #ffffff;
