@@ -1,5 +1,5 @@
 //URL -- https://docs.microsoft.com/en-us/office/dev/add-ins/develop/persisting-add-in-state-and-settings
-    //    saveAsync method to save any changes in JSON file
+    //    saveAsync method to save any changes in JSON file 
 
 var signatureListDB = Office.context.roamingSettings; //this is 'var _setting' from URL 
 
@@ -8,11 +8,14 @@ function saveMyAppSettingsCallback(asyncResult) {
     if (asyncResult.status == Office.AsyncResultStatus.Failed) {
         // Handle the failure.
     }
+} 
+
+function extend (signatureList, signatureJSON){
+    signatureList.push(signatureJSON);
 }
 
 function setSignature (){
-    //TODO have this value change with signatureListDB.  Maybe something like signatureListDB.length() (if .length method exists)
-    var IDNumber = 1; 
+    var IDNumber = signatureList.length + 1; 
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var title = document.getElementById("title").value;
@@ -20,7 +23,7 @@ function setSignature (){
     var website = document.getElementById("website").value;
     var quote = document.getElementById("quote").value;
     if (IDNumber == 1){
-        var signatureJSON_String = `{
+        var signatureJSON = {
             "ID" : IDNumber,
             "details": {
                 "firstName" : firstName,
@@ -31,10 +34,10 @@ function setSignature (){
                 "quote" : quote
             },
             "isDefault" : true
-        }`
+        }
     }
     else {
-        var signatureJSON_String = `{
+        var signatureJSON = {
             "ID" : IDNumber,
             "details": {
                 "firstName" : firstName,
@@ -45,53 +48,67 @@ function setSignature (){
                 "quote" : quote
             },
             "isDefault" : false
-        }`
+        }
     }
-    var signatureJSON = JSON.parse(signatureJSON_String) //https://www.w3schools.com/js/js_json.asp for JSON.parse
-    signatureList = $.extend({},signatureJSON); //Adds new signatureJSON into the existing signatureList. See  https://stackoverflow.com/questions/736590/add-new-attribute-element-to-json-object-using-javascript
-    signatureListDB.set("signatureList", signatureList);
+
+    extend(signatureList,signatureJSON) 
+    signatureListDB.set("signatureList", signatureList); //Not sure if this line of code is needed.
     signatureListDB.saveAsync(saveMyAppSettingsCallback);
 }
 
 //https://www.w3schools.com/js/js_json_objects.asp on info for how get JSON objects
-//TODO Review if these get function will work.  Might need to do signatureListDB.get('signatureList',signatureJSON)
 
-function getIDNumber(){
-    var signatureID = signatureListDB.get(signatureJSON.ID);
+function getIDNumber(signatureJSON){
+    var signatureID = signatureJSON.ID;
     return signatureID;
 }
 
-function getFirstName(){
-    var signatureFirstName = signatureListDB.get(signatureJSON.details.firstName);
+function getFirstName(signatureJSON){
+    var signatureFirstName = signatureJSON.details.firstName;
     return signatureFirstName;
 }
 
-function getLastName(){
-    var signatureLastName = signatureListDB.get(signatureJSON.details.lastName);
+function getLastName(signatureJSON){
+    var signatureLastName = signatureJSON.details.lastName;
     return signatureLastName;
 }
 
-function getTitle(){
-    var signatureTitle = signatureListDB.get(signatureJSON.details.title);
+function getTitle(signatureJSON){
+    var signatureTitle = signatureJSON.details.title;
     return signatureTitle;
 }
 
-function getPhone(){
-    var signaturePhone = signatureListDB.get(signatureJSON.details.Phone);
+function getPhone(signatureJSON){
+    var signaturePhone = signatureJSON.details.phone;
     return signaturePhone;
 }
 
-function getWebsite(){
-    var signatureWebsite = signatureListDB.get(signatureJSON.details.Website);
+function getWebsite(signatureJSON){
+    var signatureWebsite = signatureJSON.details.website;
     return signatureWebsite;
 }
 
-function getQuote(){
-    var signatureQuote = signatureListDB.get(signatureJSON.details.Quote);
+function getQuote(signatureJSON){
+    var signatureQuote = signatureJSON.details.quote;
     return signatureQuote;
 }
 
-function getIsDefault(){
-    var signatureQuote = signatureListDB.get(signatureJSON.isDefault);
-    return isDefault;
+function getIsDefault(signatureJSON){
+    var isDefault = signatureJSON.isDefault;
+    return isDefault; //Returns a boolean
 }
+
+function removeSignatureByID(signatureList,IDNumber){
+    signatureList.splice(IDNumber - 1,1);
+}
+
+module.exports.getIDNumber = getIDNumber
+module.exports.getFirstName = getFirstName
+module.exports.getLastName = getLastName
+module.exports.getTitle = getTitle
+module.exports.getPhone = getPhone
+module.exports.getWebsite = getWebsite
+module.exports.getQuote = getQuote
+module.exports.getIsDefault = getIsDefault
+module.exports.extend = extend
+module.exports.removeSignatureByID = removeSignatureByID
