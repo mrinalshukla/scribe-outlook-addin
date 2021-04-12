@@ -2,6 +2,7 @@
     //    saveAsync method to save any changes in JSON file 
 
 var signatureListDB = Office.context.roamingSettings; //this is 'var _setting' from URL 
+signatureList = signatureListDB.get("signatureList")
 
 //This callback method is OPTIONAL.  Can be removed from .saveAsync().
 function saveMyAppSettingsCallback(asyncResult) {
