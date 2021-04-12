@@ -150,9 +150,15 @@ describe('addJSON', function() {
 
 describe('removeJSON', function() {
     it('Remove a signature from signatureList', function() {
-        assert.equal(signatureList.length, 3)
+        assert.equal(signatureList.length, 3);
         
         database.removeSignatureByID(signatureList, 1);
         assert.equal(signatureList.length, 2);
+    });
+});
+
+describe('getSignatureByID', function() {
+    it('Retrieve a whole signatureJSON by ID', function () {
+        assert.equal(database.getSignatureByID(signatureList, 1), signatureList[0]);
     });
 });
