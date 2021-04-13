@@ -105,7 +105,7 @@ function removeSignatureByID(signatureList,IDNumber){
 
 function getSignatureByID(signatureList,IDNumber){
     var retrievedSignature =  signatureList[IDNumber - 1];
-    return retrievedSignature
+    return retrievedSignature;
 }
 
 module.exports.getIDNumber = getIDNumber

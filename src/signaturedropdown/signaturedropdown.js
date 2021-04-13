@@ -86,3 +86,8 @@ module.exports = {
 
     displaySignatures: displaySignatures
 }
+
+/*for (i = 1, i < signatureList.length, i++) {
+    var currentSignature = database.getSignatureByID(signatureList,i);
+    addToDropdown;
+}*/
