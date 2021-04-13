@@ -13,6 +13,8 @@
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
 
+    <!-- Some vector icons from Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- For more information on Office UI Fabric, visit https://developer.microsoft.com/fabric. -->
     <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css"/>
@@ -29,29 +31,48 @@
     <section id="sideload-msg" class="ms-welcome__main">
         <h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
     </section>
-    <main id="app-body" class="ms-welcome__main" style="display: none;">
-        <h2 class="ms-font-xl"> Select account using dropdown box below. </h2>
-        <select id="account">
-            <option value="hide">Select Account...</option>
-            <option value="elizabeth_account">Elizabeth Nelson</option>
-            <option value="chase_account">Chase Perez</option>
-            <option value="juan_account">Juan Ruiz</option>
-            <option value="mrinal_account">Mrinal Shukla</option>
-            <option value="marta_">Marta Sinitsina</option>
-        </select>
-        <h2 class="ms-font-xl"> Select desired signature from list and click the 'add' button. </h2>
-        <select id="signature">
-            <option value="hide">Select Signature...</option>
-            <option value="test_signature_01">Signature 01</option>
-            <option value="test_signature_01">Signature 02</option>
-            <option value="test_signature_01">Signature 03</option>
-        </select>
-        <div role="button" id="add_signature" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Add</span>
+    <main id="app-body" class="ms-welcome__main" style="display: grid;">
+        <div class="grid-container">
+            <div class="grid-item firstName">
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" style= "height: 70%">
+            </div>
+            <div class="grid-item lastName">
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" style= "height: 70%">
+            </div>
+            <div class="grid-item title">
+                <input type="text" id="title" name="title" placeholder="Title/Company" style= "width: 97%; height: 70%">
+            </div>
+            <div class="grid-item phone">
+                <input type="text" id="phone" name="phone" placeholder="Phone Number" style= "height: 70%">
+            </div>
+            <div class="grid-item website">
+                <input type="text" id="website" name="website" placeholder="Website" style= "height: 70%">
+            </div>
+            <div class="grid-item quote">
+                <input type="text" id="quote" name="quote" placeholder="Quote" style = "width: 97%; height: 70%">
+            </div>
         </div>
-        <p class="ms-font-l">To add or remove signatures, click the '<strong>Edit Signatures</strong>' button below.</p>
-        <div role="button" id="edit_signature_popup" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Edit Signatures...</span>
+        <div class="flex-container">
+            <div>
+                <button class ="ms-welcome__action.ms-Button--hero" onclick="setSignature()">
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+            <div>
+                <button class ="ms-welcome__action.ms-Button--hero" onclick="removeSignature()">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+            <div>
+                <button class ="ms-welcome__action.ms-Button--hero" onclick="undoSignature()">
+                    <i class="fa fa-undo"></i>
+                </button>
+            </div>
+            <div>
+                <button class ="ms-welcome__action.ms-Button--hero" onclick="setDefault()">
+                    <i class="fa fa-heart"></i>
+                </button>
+            </div>
         </div>
     </main>
 </body>
