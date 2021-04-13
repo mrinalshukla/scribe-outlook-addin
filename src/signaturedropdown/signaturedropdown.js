@@ -8,7 +8,7 @@ var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs'
             'Plato':'"The greatest wealth is to live content with little." - Plato'};
 
 //var myStorage = window.localStorage;
-
+/*
 var signatureDropdown = [{
     title : 'Steve Jobs',
     contents : '"Stay hungry, stay foolish." -Steve Jobs'
@@ -20,7 +20,7 @@ var signatureDropdown = [{
 {
     title : 'Plato',
     contents : '"The greatest wealth is to live content with little." - Plato'
-}] 
+}] */
 
 /*function returnQuote (Quote) {
     var quote = localStorage.getItem[Quote];
@@ -42,7 +42,7 @@ function displaySignatures () {
 }
 
 // Close Dropdown if user clicks outside of the menu
-/*window.onclick = function(event) {
+window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
         var dropdown = document.getElementsByClassName("dropdown-list");
         var x;
@@ -53,60 +53,37 @@ function displaySignatures () {
             }
         }
     }
-}*/
-
-module.exports = {
-    returnQuote: function(Quote1) {
-    return signatureDataBase[Quote1];
-    },
-
-    addSignature: function() {
-        //This will create a new key, value pair if it does not exist or overwrite an existing
-        //key, value pair if already in database
-        var newSignature = {title : document.getElementById("signatureTitle").value, 
-                            contents : document.getElementById("signatureContents").value}
-
-        signatureDropdown.push(newSignature);
-        myStorage.setItem(newSignature.title, newSignature.contents);
-    },
-    removeSignature: function(signatureDB, signatureTitle) {
-        //This will remove a key, value pair from the database if it exists
-        if(signatureDB.hasOwnProperty(signatureTitle)) {
-            delete signatureDB[signatureTitle];
-         }
-        else {
-            console.log("There is no existing item with the provided title.");
-        }
-        return signatureDB;
-    },
-
-    listSignatures: function(signatureDB, signatureTitle) {
-        const params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
-        width=0,height=0,left=-1000,top=-1000`;
-        open('https://localhost:3000/src/signaturelist.html', 'test', params)
-    },
-
-    returnSignatures: function (signatureList) {
-        var select= document.getElementById("signatureDropdown");
-
-        for (i=0; i < signatureList.length; i++) {
-            var title = document.createElement("title");
-            title.text = title.value = database.getTitle(signatureList[i])
-            select.add(title,0);
-            
-        }
-    },
-
-    returnDropdown: function (signatureDropdown) {
-        var select= document.getElementById("signatureDropdown");
-
-        for (i=0; i < signatureDropdown.length; i++) {
-            var title = document.createElement("title");
-            title.text = title.value = database.getTitle(signatureDropdown[i])
-            select.add(title,0);
-            
-        }
-    },
-
-    displaySignatures: displaySignatures,
 }
+// Function to return a quote
+function returnQuote (Quote1) {
+    return signatureDataBase[Quote1];
+}
+
+// Function to add a signature to the signature list
+function returnSignatures (signatureList) {
+
+    var select= document.getElementById("getTitle");
+
+    for (i=0; i < signatureList.length; i++) {
+        var title = document.createElement("title");
+        title.text = title.value = database.getTitle(signatureList[i])
+        select.add(title,0);
+            
+    }
+}
+// Testing the implementation of the returnSignatures function differently
+function returnDropdown (signatureDropdown) {
+    var select= document.getElementById("signatureDropdown");
+
+    for (i=0; i < signatureDropdown.length; i++) {
+        var title = document.createElement("title");
+        title.text = title.value = database.getTitle(signatureDropdown[i])
+        select.add(title,0);
+        
+    }
+}
+
+module.exports.displaySignatures = displaySignatures
+module.exports.returnQuote = returnQuote
+module.exports.returnSignatures = returnSignatures
+module.exports.returnDropdown = returnDropdown

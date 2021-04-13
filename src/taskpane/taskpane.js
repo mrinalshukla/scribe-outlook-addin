@@ -7,7 +7,6 @@
 import "../../assets/icon-16.png";
 import "../../assets/icon-32.png";
 import "../../assets/icon-80.png";
-import { displaySignatures } from "../signaturedropdown/signaturedropdown";
 
 /* global document, Office */
 
@@ -17,7 +16,6 @@ Office.onReady(info => {
         document.getElementById("app-body").style.display = "flex";
         document.getElementById("edit_signature_popup").onclick = run;
         document.getElementById("add_signature").onclick = applySignature;
-        //document.getElementById("edit_signature_popup").onclick =  displaySignatures;
   }
 });
 
