@@ -1,6 +1,6 @@
 //URL -- https://docs.microsoft.com/en-us/office/dev/add-ins/develop/persisting-add-in-state-and-settings
     //    saveAsync method to save any changes in JSON file 
-
+/*
 var signatureListDB = Office.context.roamingSettings; //this is 'var _setting' from URL 
 signatureList = signatureListDB.get("signatureList")
 
@@ -10,7 +10,7 @@ function saveMyAppSettingsCallback(asyncResult) {
         // Handle the failure.
     }
 } 
-
+*/
 function extend (signatureList, signatureJSON){
     signatureList.push(signatureJSON);
 }

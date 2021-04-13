@@ -1,13 +1,15 @@
-Office.initialize = initializeStorage;
+const database = require('../signaturecommands/database.js');
+
+//Office.initialize = initializeStorage;
 
 // Initial Signature Databse
 var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs',
             'JFK':'"Those who dare to fail miserably can achieve greatly." -John F. Kennedy',
             'Plato':'"The greatest wealth is to live content with little." - Plato'};
 
-var myStorage = window.localStorage;
+//var myStorage = window.localStorage;
 
-var signaturedropdown = [{
+var signatureDropdown = [{
     title : 'Steve Jobs',
     contents : '"Stay hungry, stay foolish." -Steve Jobs'
 },
@@ -30,9 +32,9 @@ var signaturedropdown = [{
 
 }*/
 
-function initializeStorage () {
+/*function initializeStorage () {
     myStorage = window.localStorage;
-}
+}*/
 
 // Dropdown List Function
 function displaySignatures () {
@@ -40,7 +42,7 @@ function displaySignatures () {
 }
 
 // Close Dropdown if user clicks outside of the menu
-window.onclick = function(event) {
+/*window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
         var dropdown = document.getElementsByClassName("dropdown-list");
         var x;
@@ -51,7 +53,7 @@ window.onclick = function(event) {
             }
         }
     }
-}
+}*/
 
 module.exports = {
     returnQuote: function(Quote1) {
@@ -64,7 +66,7 @@ module.exports = {
         var newSignature = {title : document.getElementById("signatureTitle").value, 
                             contents : document.getElementById("signatureContents").value}
 
-        signaturedropdown.push(newSignature);
+        signatureDropdown.push(newSignature);
         myStorage.setItem(newSignature.title, newSignature.contents);
     },
     removeSignature: function(signatureDB, signatureTitle) {
@@ -84,5 +86,27 @@ module.exports = {
         open('https://localhost:3000/src/signaturelist.html', 'test', params)
     },
 
-    displaySignatures: displaySignatures
+    returnSignatures: function (signatureList) {
+        var select= document.getElementById("signatureDropdown");
+
+        for (i=0; i < signatureList.length; i++) {
+            var title = document.createElement("title");
+            title.text = title.value = database.getTitle(signatureList[i])
+            select.add(title,0);
+            
+        }
+    },
+
+    returnDropdown: function (signatureDropdown) {
+        var select= document.getElementById("signatureDropdown");
+
+        for (i=0; i < signatureDropdown.length; i++) {
+            var title = document.createElement("title");
+            title.text = title.value = database.getTitle(signatureDropdown[i])
+            select.add(title,0);
+            
+        }
+    },
+
+    displaySignatures: displaySignatures,
 }
