@@ -108,6 +108,7 @@ function getSignatureByID(signatureList,IDNumber){
     return retrievedSignature;
 }
 
+module.exports.setSignature = setSignature
 module.exports.getIDNumber = getIDNumber
 module.exports.getFirstName = getFirstName
 module.exports.getLastName = getLastName
