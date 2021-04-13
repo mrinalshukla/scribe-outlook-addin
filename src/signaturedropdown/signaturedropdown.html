@@ -17,11 +17,48 @@
     <link href="signaturelist.css" rel="stylesheet" type="text/css" />
 </head>
 
+<script src = "signaturedropdown.js"></script>
+
 <body class="ms-font-1" style="background-color:rgba(0, 12, 14, 0.267);">
     <main>
         <style>
             h1 {text-align: center;}
         </style>
+
+        <p id="selectButton" style=
+        "font-size:20px; font-weight:bold">
+        </p>
+
+
+        <button onclick="signatureDrop();">Signatures:</button>
+
+        <p id="dropButton" style="font-size: 26px;
+        font-weight: bold; color: green;">
+        </p>
+
+        <script>
+        var up = document.getElementById('selectButton');
+        var down = document.getElementById('dropButton');
+        var select = document.getElementById("arr");
+        var elmts = [];
+        up.innerHTML = "Click on the button to "
+                + "perform the operation"+
+                ".<br>Array - [" + elmts + "]";
+
+        // Main function
+        function signatureDrop() {
+            for (var i = 0; i < elmts.length; i++) {
+                var optn = elmts[i];
+                var el = document.createElement("option");
+                el.textContent = optn;
+                el.value = optn;
+                select.appendChild(el);
+            }
+            down.innerHTML = "Elements Added";
+        }
+        </script>
+
+        <!--
         <h1 class="ms-font-xl"><strong>Signatures</strong></h1>
            
         <div class="dropdown">
@@ -35,7 +72,7 @@
                 return currentSignature;
             }
 
-        </script>
+        </script>   -->
     </main>
 </body>
 
