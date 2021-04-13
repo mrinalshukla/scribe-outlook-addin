@@ -3,6 +3,11 @@
  * See LICENSE in the project root for license information.
  */
 
+ /*
+ * Most of the code added was used with reference to:
+ * https://www.w3schools.com/css/default.asp
+ */
+
  html,
  body {
      width: 100%;
@@ -17,9 +22,9 @@
  }
  
  .ms-welcome__header {
-    padding: 20px;
-    padding-bottom: 30px;
-    padding-top: 100px;
+    padding: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
@@ -88,11 +93,11 @@ b {
 }
   
 .grid-item {
-    background-color: rgba(96, 113, 207, 0.055);
+    background-color: rgba(96, 113, 207, 0);
     text-align: center;
     vertical-align: middle;
-    height: 55px;
-    padding: 5px 0;
+    height: 45px;
+    padding: 2px 0;
     font-size: 30px;
 }
 
@@ -140,6 +145,37 @@ b {
 
 .flex-container > div {
     color: rgb(109, 109, 109);
-    padding: 10px;
-    margin: 10px;
+    padding: 5px;
+    margin: 2px;
 }
+
+.applySignature {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: 91%;
+    border: none;
+    border-radius: 8px;
+}
+
+.button {
+    background-color: #747474;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 22px;
+    margin: 4px 4px;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    transition-duration: 0.4s;
+  }
+
+  .button:hover {
+      background-color:rgb(32, 136, 255)
+  }

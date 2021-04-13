@@ -13,6 +13,9 @@
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
 
+    <!-- Database.js for JS functions-->
+    <script src="/src/signaturecommands/database.js"></script>
+
     <!-- Some vector icons from Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -25,7 +28,6 @@
 
 <body class="ms-font-m ms-welcome ms-Fabric">
     <header class="ms-welcome__header ms-bgColor-neutralLighter">
-        <img width="90" height="90" src="../../assets/Polaris-1.png" alt="Scribe - Outlook Add-in to manage your signatures!" title="Scribe" />
         <h1 class="ms-font-su">Welcome</h1>
     </header>
     <section id="sideload-msg" class="ms-welcome__main">
@@ -54,25 +56,37 @@
         </div>
         <div class="flex-container">
             <div>
-                <button class ="ms-welcome__action.ms-Button--hero" onclick="setSignature()">
-                    <i class="fa fa-check"></i>
+                <button class ="button ms-welcome__action.ms-Button--hero" title="Save Signature" style = "width: 50px;" onclick="setSignature()">
+                    <i class="fa fa-save"></i>
                 </button>
             </div>
             <div>
-                <button class ="ms-welcome__action.ms-Button--hero" onclick="removeSignature()">
-                    <i class="fa fa-close"></i>
+                <button class ="button ms-welcome__action.ms-Button--hero" title="Delete Selected Signature" style = "width: 50px;"  onclick="removeSignatureByID()">
+                    <i class="fa fa-trash"></i>
                 </button>
             </div>
             <div>
-                <button class ="ms-welcome__action.ms-Button--hero" onclick="undoSignature()">
+                <button class ="button ms-welcome__action.ms-Button--hero" title="Undo Signature Edits" style = "width: 50px;"  onclick="undoSignature()">
                     <i class="fa fa-undo"></i>
                 </button>
             </div>
             <div>
-                <button class ="ms-welcome__action.ms-Button--hero" onclick="setDefault()">
+                <button class ="button ms-welcome__action.ms-Button--hero" title="Set as Default Signature" style = "width: 50px;"  onclick="setDefault()">
                     <i class="fa fa-heart"></i>
                 </button>
             </div>
+        </div>
+        <div>
+            <select id="signature">
+                <option value="hide">Select a Signature...</option>
+                <option value="test_signature_01">Signature 01</option>
+                 <option value="test_signature_01">Signature 02</option>
+                 <option value="test_signature_01">Signature 03</option>
+          </select>
+        </div>
+        <div class ="button applySignature" title="Apply Signature at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync("Example Signature")'>
+            <i class="fa fa-pencil"></i>
+            Apply Signature
         </div>
     </main>
 </body>
