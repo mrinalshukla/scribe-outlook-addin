@@ -14,9 +14,8 @@ Office.onReady(info => {
     if (info.host === Office.HostType.Outlook) {
         document.getElementById("sideload-msg").style.display = "none";
         document.getElementById("app-body").style.display = "flex";
-        //document.getElementById("edit_signature_popup").onclick = run;
-        //document.getElementById("add_signature").onclick = applySignature;
-        //document.getElementById("edit_signature_popup").onclick =  displaySignatures;
+        document.getElementById("edit_signature_popup").onclick = run;
+        document.getElementById("add_signature").onclick = applySignature;
   }
 });
 

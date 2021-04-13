@@ -37,14 +37,5 @@ ul {
     box-shadow: 0px 8px 16px 0px rgba(148, 17, 17, 0.2);
     z-index: 1;
   }
-   
-  .dropdown-list a {
-    color: rgb(0, 0, 0);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-list a:hover {background-color: rgb(108, 108, 114)}
-  
+
   .show {display:block;}

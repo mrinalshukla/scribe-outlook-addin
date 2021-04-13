@@ -1,4 +1,7 @@
-<script>import { addSignature } from "../signaturedropdown/signaturedropdown"</script>
+<script>
+import { addSignature } from "../signaturedropdown/signaturedropdown"
+import { getIDNumber } from "../signaturecommands/database.js"
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +51,7 @@
         </div>
         <div>
           <h2 class="ms-font-xl"> Select signature you want to edit. </h2>
-          <select id="signature">
+          <select id="signatureID">
               <option value="hide">Select Signature...</option>
               <option value="test_signature_01">Signature 01</option>
               <option value="test_signature_01">Signature 02</option>
