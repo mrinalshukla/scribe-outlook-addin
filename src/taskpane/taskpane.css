@@ -150,7 +150,7 @@ b {
 }
 
 .applySignature {
-    position: fixed;
+    /*position: fixed; */
     bottom: 0px;
     right: 0px;
     width: 91%;

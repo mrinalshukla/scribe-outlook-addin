@@ -1,8 +1,8 @@
-//URL -- https://docs.microsoft.com/en-us/office/dev/add-ins/develop/persisting-add-in-state-and-settings
+//https://docs.microsoft.com/en-us/javascript/api/outlook/office.roamingsettings?view=outlook-js-preview
     //    saveAsync method to save any changes in JSON file 
-/*
-var signatureListDB = Office.context.roamingSettings; //this is 'var _setting' from URL 
-signatureList = signatureListDB.get("signatureList")
+
+/*var signatureListDB = Office.context.roamingSettings; //this is 'var _setting' from URL 
+var signatureList = signatureListDB.get("signatureList") */
 
 //This callback method is OPTIONAL.  Can be removed from .saveAsync().
 function saveMyAppSettingsCallback(asyncResult) {
@@ -10,56 +10,95 @@ function saveMyAppSettingsCallback(asyncResult) {
         // Handle the failure.
     }
 } 
-*/
+
+//TODO add a removeSignatureByID function
+
 function extend (signatureList, signatureJSON){
-    signatureList.push(signatureJSON);
+    return newSignatureList = [signatureList,signatureJSON];
 }
 
+function saveSignature(){
+    if (Office.context.roamingSettings.get("signatureList") !== undefined){
+        setSignature();
+    }
+    else {
+        setNewSignature();
+    }
+};
+
 function setSignature (){
-    var IDNumber = signatureList.length + 1; 
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    signatureList = JSON.parse(signatureList);
+
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var title = document.getElementById("title").value;
     var phone = document.getElementById("phone").value;
     var website = document.getElementById("website").value;
     var quote = document.getElementById("quote").value;
-    if (IDNumber == 1){
-        var signatureJSON = {
-            "ID" : IDNumber,
-            "details": {
-                "firstName" : firstName,
-                "lastName" : lastName,
-                "title" : title,
-                "phone" : phone,
-                "website" : website,
-                "quote" : quote
-            },
-            "isDefault" : true
-        }
-    }
-    else {
-        var signatureJSON = {
-            "ID" : IDNumber,
-            "details": {
-                "firstName" : firstName,
-                "lastName" : lastName,
-                "title" : title,
-                "phone" : phone,
-                "website" : website,
-                "quote" : quote
-            },
-            "isDefault" : false
-        }
+    var IDSignature = firstName + quote.substr(0,10);
+
+    var signatureJSON = {
+        "ID" : IDSignature,
+        "details": {
+            "firstName" : firstName,
+            "lastName" : lastName,
+            "title" : title,
+            "phone" : phone,
+            "website" : website,
+            "quote" : quote
+        },
+        "isDefault" : false
     }
 
-    extend(signatureList,signatureJSON) 
-    signatureListDB.set("signatureList", signatureList); //Not sure if this line of code is needed.
-    signatureListDB.saveAsync(saveMyAppSettingsCallback);
+    signatureList = extend(signatureList,signatureJSON); 
+    Office.context.roamingSettings.set("signatureList", JSON.stringify(signatureList));
+    Office.context.roamingSettings.saveAsync(function(result) {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Action failed with message ${result.error.message}`);
+        } else {
+          console.log(`Settings saved with status: ${result.status}`);
+        }
+      });
+}
+
+function setNewSignature (){
+    //var signatureList = {};
+
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var title = document.getElementById("title").value;
+    var phone = document.getElementById("phone").value;
+    var website = document.getElementById("website").value;
+    var quote = document.getElementById("quote").value;
+    var IDSignature = firstName + quote.substr(0,10);
+
+    var signatureJSON = {
+        "ID" : IDSignature,
+        "details": {
+            "firstName" : firstName,
+            "lastName" : lastName,
+            "title" : title,
+            "phone" : phone,
+            "website" : website,
+            "quote" : quote
+        },
+        "isDefault" : false
+    }
+
+    Office.context.roamingSettings.set("signatureList", JSON.stringify(signatureJSON));
+    Office.context.roamingSettings.saveAsync(function(result) {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Action failed with message ${result.error.message}`);
+        } else {
+          console.log(`Settings saved with status: ${result.status}`);
+        }
+      });
 }
 
 //https://www.w3schools.com/js/js_json_objects.asp on info for how get JSON objects
 
-function getIDNumber(signatureJSON){
+function getID(signatureJSON){
     var signatureID = signatureJSON.ID;
     return signatureID;
 }
@@ -90,6 +129,9 @@ function getWebsite(signatureJSON){
 }
 
 function getQuote(signatureJSON){
+    if (signatureJSON.details.quote == null){
+        return "Null";
+    }
     var signatureQuote = signatureJSON.details.quote;
     return signatureQuote;
 }
@@ -99,17 +141,56 @@ function getIsDefault(signatureJSON){
     return isDefault; //Returns a boolean
 }
 
-function removeSignatureByID(signatureList,IDNumber){
-    signatureList.splice(IDNumber - 1,1);
+//TODO fix console.log
+function clearList(){
+    Office.context.roamingSettings.remove("signatureList");
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    if (signatureList.length == undefined){
+        console.log("List has been cleared.");
+    }
+    else {
+        console.log("List unable to be cleared.")
+    }
 }
 
-function getSignatureByID(signatureList,IDNumber){
-    var retrievedSignature =  signatureList[IDNumber - 1];
-    return retrievedSignature;
+function getSignatureByID(IDSignature){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    signatureList = JSON.parse(signatureList);
+    console.log(signatureList.length)
+
+    for (i=0; i < signatureList.length; i++){
+        var signatureJSON = signatureList[i];
+        console.log(JSON.stringify(signatureJSON));
+        if (getID(signatureJSON) == null){
+            continue;
+        }
+        else if (getID(signatureJSON) == IDSignature){
+            return signatureJSON;
+        }
+    }
+    return "Signature does not exist.";
+}
+
+function returnSignatureList(){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    //signatureList = JSON.parse(signatureList);
+    return signatureList;
+}
+
+function returnSignatureByID(){
+    //var signatureList = Office.context.roamingSettings.get("signatureList");
+
+    var firstName = document.getElementById("firstName").value;
+    var quote = document.getElementById("quote").value;
+    var IDSignature = firstName + quote.substr(0,10);
+
+    var returnedSignature = getSignatureByID(IDSignature);
+    var signatureQuote = getQuote(returnedSignature);
+    return signatureQuote;
 }
 
 module.exports.setSignature = setSignature
-module.exports.getIDNumber = getIDNumber
+module.exports.getID = getID
 module.exports.getFirstName = getFirstName
 module.exports.getLastName = getLastName
 module.exports.getTitle = getTitle
@@ -119,4 +200,5 @@ module.exports.getQuote = getQuote
 module.exports.getIsDefault = getIsDefault
 module.exports.extend = extend
 module.exports.removeSignatureByID = removeSignatureByID
-module.exports.getSignatureByID = getSignatureByID
+module.exports.getSignatureByID = getSignatureByID 
+module.exports.clearList = clearList 

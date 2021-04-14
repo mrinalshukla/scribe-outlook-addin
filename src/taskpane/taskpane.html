@@ -16,6 +16,9 @@
     <!-- Database.js for JS functions-->
     <script src="/src/signaturecommands/database.js"></script>
 
+    <!-- randomquotes.js for JS functions-->
+    <script type="test/javascript" src="/src/randomquotes/randomquotes.js"></script>
+
     <!-- Some vector icons from Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -27,9 +30,9 @@
 </head>
 
 <body class="ms-font-m ms-welcome ms-Fabric">
-    <header class="ms-welcome__header ms-bgColor-neutralLighter">
+    <!--<header class="ms-welcome__header ms-bgColor-neutralLighter">
         <h1 class="ms-font-su">Welcome</h1>
-    </header>
+    </header> -->
     <section id="sideload-msg" class="ms-welcome__main">
         <h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
     </section>
@@ -56,7 +59,7 @@
         </div>
         <div class="flex-container">
             <div>
-                <button class ="button ms-welcome__action.ms-Button--hero" title="Save Signature" style = "width: 50px;" onclick="setSignature()">
+                <button class ="button ms-welcome__action.ms-Button--hero" title="Save Signature" style = "width: 50px;" onclick="saveSignature()">
                     <i class="fa fa-save"></i>
                 </button>
             </div>
@@ -84,10 +87,22 @@
                  <option value="test_signature_01">Signature 03</option>
           </select>
         </div>
-        <div class ="button applySignature" title="Apply Signature at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync("Example Signature")'>
+        <div class ="button applySignature" title="Apply Signature at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync(returnSignatureByID())'>
             <i class="fa fa-pencil"></i>
             Apply Signature
         </div>
+        <div class ="button applySignatureList" title="Apply Signature List at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync(returnSignatureList())'>
+            <i class="fa fa-pencil"></i>
+            Return Signature List
+        </div>
+        <div>
+        <div class ="button clearList" title="Clears list" onclick="clearList()">
+            Clear List
+        </div>
+        <!--<div class ="button applySignature" title="Apply Signature at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync("Example Signature")'>
+            <i class="fa fa-pencil"></i>
+            Apply Signature
+        </div>-->
     </main>
 </body>
 

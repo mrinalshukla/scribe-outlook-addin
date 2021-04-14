@@ -1,5 +1,8 @@
 /*TODO Find a way to get past the 'ReferenceError: Office is not defined'
-    To get test to run, need to go into database.js and comment out lines 1-11. */
+    To get test to run, need to go into database.js and comment out lines 1-11.
+    
+    TODO Update these variables to match current database.js*/
+
 
 const assert = require('chai').assert;
 const database = require('../src/signaturecommands/database.js');
@@ -60,7 +63,7 @@ const newJsonObject = {
 
 describe('getID', function() {
     it('Grabs ID number from JSON object', function() {
-        const signatureID = database.getIDNumber(jsonObject);
+        const signatureID = database.getID(jsonObject);
 
         assert.equal(signatureID, 1);
     });
