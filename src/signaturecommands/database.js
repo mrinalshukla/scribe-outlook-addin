@@ -11,10 +11,8 @@ function saveMyAppSettingsCallback(asyncResult) {
     }
 } 
 
-//TODO add a removeSignatureByID function
-
 function extend (signatureList, signatureJSON){
-    return newSignatureList = [signatureList,signatureJSON];
+    signatureList.push(signatureJSON);
 }
 
 function saveSignature(){
@@ -28,7 +26,6 @@ function saveSignature(){
 
 function setSignature (){
     var signatureList = Office.context.roamingSettings.get("signatureList");
-    signatureList = JSON.parse(signatureList);
 
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
@@ -51,8 +48,8 @@ function setSignature (){
         "isDefault" : false
     }
 
-    signatureList = extend(signatureList,signatureJSON); 
-    Office.context.roamingSettings.set("signatureList", JSON.stringify(signatureList));
+    extend(signatureList,signatureJSON); 
+    Office.context.roamingSettings.set("signatureList", signatureList);
     Office.context.roamingSettings.saveAsync(function(result) {
         if (result.status !== Office.AsyncResultStatus.Succeeded) {
           console.error(`Action failed with message ${result.error.message}`);
@@ -63,8 +60,6 @@ function setSignature (){
 }
 
 function setNewSignature (){
-    //var signatureList = {};
-
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var title = document.getElementById("title").value;
@@ -73,7 +68,7 @@ function setNewSignature (){
     var quote = document.getElementById("quote").value;
     var IDSignature = firstName + quote.substr(0,10);
 
-    var signatureJSON = {
+    var signatureJSON = [{
         "ID" : IDSignature,
         "details": {
             "firstName" : firstName,
@@ -84,9 +79,9 @@ function setNewSignature (){
             "quote" : quote
         },
         "isDefault" : false
-    }
+    }]
 
-    Office.context.roamingSettings.set("signatureList", JSON.stringify(signatureJSON));
+    Office.context.roamingSettings.set("signatureList", signatureJSON);
     Office.context.roamingSettings.saveAsync(function(result) {
         if (result.status !== Office.AsyncResultStatus.Succeeded) {
           console.error(`Action failed with message ${result.error.message}`);
@@ -129,11 +124,16 @@ function getWebsite(signatureJSON){
 }
 
 function getQuote(signatureJSON){
-    if (signatureJSON.details.quote == null){
-        return "Null";
+    if (signatureJSON == "Signature does not exist."){
+        return "Signature does not exist.";
     }
-    var signatureQuote = signatureJSON.details.quote;
-    return signatureQuote;
+    else{
+        if (signatureJSON.details.quote == null){
+            return "Null";
+        }
+        var signatureQuote = signatureJSON.details.quote;
+        return signatureQuote;
+    }
 }
 
 function getIsDefault(signatureJSON){
@@ -141,26 +141,22 @@ function getIsDefault(signatureJSON){
     return isDefault; //Returns a boolean
 }
 
-//TODO fix console.log
 function clearList(){
     Office.context.roamingSettings.remove("signatureList");
-    var signatureList = Office.context.roamingSettings.get("signatureList");
-    if (signatureList.length == undefined){
-        console.log("List has been cleared.");
-    }
-    else {
-        console.log("List unable to be cleared.")
-    }
+    Office.context.roamingSettings.saveAsync(function(result) {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Action failed with message ${result.error.message}`);
+        } else {
+          console.log(`Settings saved with status: ${result.status}`);
+        }
+      });
 }
 
 function getSignatureByID(IDSignature){
     var signatureList = Office.context.roamingSettings.get("signatureList");
-    signatureList = JSON.parse(signatureList);
-    console.log(signatureList.length)
 
     for (i=0; i < signatureList.length; i++){
         var signatureJSON = signatureList[i];
-        console.log(JSON.stringify(signatureJSON));
         if (getID(signatureJSON) == null){
             continue;
         }
@@ -173,23 +169,55 @@ function getSignatureByID(IDSignature){
 
 function returnSignatureList(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
-    //signatureList = JSON.parse(signatureList);
+    signatureList = JSON.stringify(signatureList);
     return signatureList;
 }
 
 function returnSignatureByID(){
-    //var signatureList = Office.context.roamingSettings.get("signatureList");
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    var quote = document.getElementById("quote").value;
+
+    if (signatureList == undefined && quote == ""){
+        return "Signature list does not exist and no values in text boxes.";
+    }
+    else if (signatureList == undefined && quote != ""){
+        saveSignature(); //Maybe take this out.  Check with team.  Maybe do a pop up that asks to save
+        return quote;
+    }
+    else{
+        if(signatureList.length !=0){
+            var firstName = document.getElementById("firstName").value;
+            var quote = document.getElementById("quote").value;
+            var IDSignature = firstName + quote.substr(0,10);
+
+            var returnedSignature = getSignatureByID(IDSignature);
+            var signatureQuote = getQuote(returnedSignature);
+            return signatureQuote;
+        }
+        return "Signature list does not exist.";
+    }
+}
+
+function removeSignatureByID(){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
 
     var firstName = document.getElementById("firstName").value;
     var quote = document.getElementById("quote").value;
     var IDSignature = firstName + quote.substr(0,10);
 
     var returnedSignature = getSignatureByID(IDSignature);
-    var signatureQuote = getQuote(returnedSignature);
-    return signatureQuote;
+    var indexOfSignature = signatureList.indexOf(returnedSignature);
+    signatureList.splice(indexOfSignature,1);
+
+    Office.context.roamingSettings.saveAsync(function(result) {
+        if (result.status !== Office.AsyncResultStatus.Succeeded) {
+          console.error(`Action failed with message ${result.error.message}`);
+        } else {
+          console.log(`Settings saved with status: ${result.status}`);
+        }
+      });
 }
 
-module.exports.setSignature = setSignature
 module.exports.getID = getID
 module.exports.getFirstName = getFirstName
 module.exports.getLastName = getLastName
