@@ -33,10 +33,10 @@ function setSignature (){
     var phone = document.getElementById("phone").value;
     var website = document.getElementById("website").value;
     var quote = document.getElementById("quote").value;
-    var IDSignature = firstName + quote.substr(0,10);
+    var signatureID = document.getElementById("signatureID").value;
 
     var signatureJSON = {
-        "ID" : IDSignature,
+        "ID" : signatureID,
         "details": {
             "firstName" : firstName,
             "lastName" : lastName,
@@ -57,6 +57,7 @@ function setSignature (){
           console.log(`Settings saved with status: ${result.status}`);
         }
       });
+      //location.reload();
 }
 
 function setNewSignature (){
@@ -66,10 +67,10 @@ function setNewSignature (){
     var phone = document.getElementById("phone").value;
     var website = document.getElementById("website").value;
     var quote = document.getElementById("quote").value;
-    var IDSignature = firstName + quote.substr(0,10);
+    var signatureID = document.getElementById("signatureID").value;
 
     var signatureJSON = [{
-        "ID" : IDSignature,
+        "ID" : signatureID,
         "details": {
             "firstName" : firstName,
             "lastName" : lastName,
@@ -89,6 +90,7 @@ function setNewSignature (){
           console.log(`Settings saved with status: ${result.status}`);
         }
       });
+    //location.reload();
 }
 
 //https://www.w3schools.com/js/js_json_objects.asp on info for how get JSON objects
@@ -150,9 +152,10 @@ function clearList(){
           console.log(`Settings saved with status: ${result.status}`);
         }
       });
+      //location.reload();
 }
 
-function getSignatureByID(IDSignature){
+function getSignatureByID(signatureID){
     var signatureList = Office.context.roamingSettings.get("signatureList");
 
     for (i=0; i < signatureList.length; i++){
@@ -160,7 +163,7 @@ function getSignatureByID(IDSignature){
         if (getID(signatureJSON) == null){
             continue;
         }
-        else if (getID(signatureJSON) == IDSignature){
+        else if (getID(signatureJSON) == signatureID){
             return signatureJSON;
         }
     }
@@ -186,11 +189,8 @@ function returnSignatureByID(){
     }
     else{
         if(signatureList.length !=0){
-            var firstName = document.getElementById("firstName").value;
-            var quote = document.getElementById("quote").value;
-            var IDSignature = firstName + quote.substr(0,10);
-
-            var returnedSignature = getSignatureByID(IDSignature);
+            var signatureID = document.getElementById("signatureDropdown").value;
+            var returnedSignature = getSignatureByID(signatureID);
             var signatureQuote = getQuote(returnedSignature);
             return signatureQuote;
         }
@@ -201,11 +201,8 @@ function returnSignatureByID(){
 function removeSignatureByID(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
 
-    var firstName = document.getElementById("firstName").value;
-    var quote = document.getElementById("quote").value;
-    var IDSignature = firstName + quote.substr(0,10);
-
-    var returnedSignature = getSignatureByID(IDSignature);
+    var signatureID = document.getElementById("signatureDropdown").value;
+    var returnedSignature = getSignatureByID(signatureID);
     var indexOfSignature = signatureList.indexOf(returnedSignature);
     signatureList.splice(indexOfSignature,1);
 
@@ -216,6 +213,8 @@ function removeSignatureByID(){
           console.log(`Settings saved with status: ${result.status}`);
         }
       });
+    
+      //location.reload();
 }
 
 module.exports.getID = getID
@@ -230,3 +229,4 @@ module.exports.extend = extend
 module.exports.removeSignatureByID = removeSignatureByID
 module.exports.getSignatureByID = getSignatureByID 
 module.exports.clearList = clearList 
+module.exports.returnSignatureTitleLoop = returnSignatureTitleLoop 

@@ -16,6 +16,7 @@ Office.onReady(info => {
     if (info.host === Office.HostType.Outlook) {
         document.getElementById("sideload-msg").style.display = "none";
         document.getElementById("app-body").style.display = "flex";
+        returnSignatureTitleLoop();
         //document.getElementById("edit_signature_popup").onclick = run;
         //document.getElementById("add_signature").onclick = applySignature;
   }
@@ -38,3 +39,18 @@ function applySignature() {
   //Inserts a hardcoded signature at cursor position
   Office.context.mailbox.item.body.setSelectedDataAsync("Chase Perez - Team 4 Polaris");
 } 
+
+function returnSignatureTitleLoop(){
+  var signatureList = Office.context.roamingSettings.get("signatureList");
+  var signatureDropdown = document.getElementById("signatureDropdown");
+  console.log("Signature list correctly called.");
+  
+  for (var i=0; i < signatureList.length; i++){
+      var signatureID = getID(signatureList[i]);
+      var option = document.createElement("option");
+      option.value = signatureID;
+      option.innerHTML = signatureID;
+      signatureDropdown.appendChild(option);
+      //location.reload();
+  }
+}

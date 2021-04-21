@@ -17,7 +17,10 @@
     <script src="/src/signaturecommands/database.js"></script>
 
     <!-- randomquotes.js for JS functions-->
-    <script type="test/javascript" src="/src/randomquotes/randomquotes.js"></script>
+    <script type="text/javascript" src="/src/randomquotes/randomquotes.js"></script>
+
+    <!-- signaturedropdown.js for JS functions-->
+    <script src="/src/signaturedropdown/signaturedropdown.js"></script>
 
     <!-- Some vector icons from Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,7 +32,7 @@
     <link href="taskpane.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="ms-font-m ms-welcome ms-Fabric">
+<body class="ms-font-m ms-welcome ms-Fabric" onload="returnSignatureTitleLoop()">
     <!--<header class="ms-welcome__header ms-bgColor-neutralLighter">
         <h1 class="ms-font-su">Welcome</h1>
     </header> -->
@@ -40,6 +43,9 @@
         <div class="grid-container">
             <div class="grid-item firstName">
                 <input type="text" id="firstName" name="firstName" placeholder="First Name" style= "height: 70%">
+            </div>
+            <div class="grid-item signatureID">
+                <input type="text" id="signatureID" name="signatureID" placeholder="Signature Name" style= "height: 70%">
             </div>
             <div class="grid-item lastName">
                 <input type="text" id="lastName" name="lastName" placeholder="Last Name" style= "height: 70%">
@@ -79,13 +85,17 @@
                 </button>
             </div>
         </div>
+        
         <div>
-            <select id="signature">
+            <select id="signatureDropdown">
+                <option value="hide">Select a Signature...</option>
+          </select>
+            <!--<select id="signature">
                 <option value="hide">Select a Signature...</option>
                 <option value="test_signature_01">Signature 01</option>
                  <option value="test_signature_01">Signature 02</option>
                  <option value="test_signature_01">Signature 03</option>
-          </select>
+          </select>-->
         </div>
         <div class ="button applySignature" title="Apply Signature at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync(returnSignatureByID())'>
             <i class="fa fa-pencil"></i>
