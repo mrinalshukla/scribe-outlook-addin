@@ -43,14 +43,14 @@ function applySignature() {
 function returnSignatureTitleLoop(){
   var signatureList = Office.context.roamingSettings.get("signatureList");
   var signatureDropdown = document.getElementById("signatureDropdown");
+  var signatureListLength = signatureList.length
   console.log("Signature list correctly called.");
   
-  for (var i=0; i < signatureList.length; i++){
+  for (var i=0; i < signatureListLength; i++){
       var signatureID = getID(signatureList[i]);
       var option = document.createElement("option");
       option.value = signatureID;
       option.innerHTML = signatureID;
       signatureDropdown.appendChild(option);
-      //location.reload();
   }
 }

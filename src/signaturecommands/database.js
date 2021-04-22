@@ -33,7 +33,13 @@ function setSignature (){
     var phone = document.getElementById("phone").value;
     var website = document.getElementById("website").value;
     var quote = document.getElementById("quote").value;
-    var signatureID = document.getElementById("signatureID").value;
+    var signatureIDValue = document.getElementById("signatureID").value;
+    if (signatureIDValue == ""){
+        signatureID = "Signature " + (signatureList.length + 1);
+    }
+    else {
+        signatureID = signatureIDValue;
+    }
 
     var signatureJSON = {
         "ID" : signatureID,
@@ -55,19 +61,27 @@ function setSignature (){
           console.error(`Action failed with message ${result.error.message}`);
         } else {
           console.log(`Settings saved with status: ${result.status}`);
+          addItemToDropdown();
         }
       });
-      //location.reload();
 }
 
 function setNewSignature (){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var title = document.getElementById("title").value;
     var phone = document.getElementById("phone").value;
     var website = document.getElementById("website").value;
     var quote = document.getElementById("quote").value;
-    var signatureID = document.getElementById("signatureID").value;
+    var signatureIDValue = document.getElementById("signatureID").value;
+    if (signatureIDValue == ""){
+        signatureID = "Signature " + (signatureList.length + 1);
+    }
+    else {
+        signatureID = signatureIDValue;
+    }
 
     var signatureJSON = [{
         "ID" : signatureID,
@@ -88,9 +102,9 @@ function setNewSignature (){
           console.error(`Action failed with message ${result.error.message}`);
         } else {
           console.log(`Settings saved with status: ${result.status}`);
+          addItemToDropdown();
         }
       });
-    //location.reload();
 }
 
 //https://www.w3schools.com/js/js_json_objects.asp on info for how get JSON objects
@@ -152,7 +166,7 @@ function clearList(){
           console.log(`Settings saved with status: ${result.status}`);
         }
       });
-      //location.reload();
+    var signatureList = Office.context.roamingSettings.get("signatureList");
 }
 
 function getSignatureByID(signatureID){
@@ -204,6 +218,8 @@ function removeSignatureByID(){
     var signatureID = document.getElementById("signatureDropdown").value;
     var returnedSignature = getSignatureByID(signatureID);
     var indexOfSignature = signatureList.indexOf(returnedSignature);
+
+    removeItemFromDropdown(returnedSignature);
     signatureList.splice(indexOfSignature,1);
 
     Office.context.roamingSettings.saveAsync(function(result) {
@@ -213,8 +229,22 @@ function removeSignatureByID(){
           console.log(`Settings saved with status: ${result.status}`);
         }
       });
-    
-      //location.reload();
+}
+
+function addItemToDropdown(){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    var signatureID = getID(signatureList[signatureList.length - 1]);
+    var option = document.createElement("option");
+    option.value = signatureID;
+    option.innerHTML = signatureID;
+    signatureDropdown.appendChild(option);
+}
+
+function removeItemFromDropdown(returnedSignature){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    var indexOfSignature = signatureList.indexOf(returnedSignature);
+    var signatureDropdown = document.getElementById("signatureDropdown");;
+    signatureDropdown.remove(indexOfSignature + 1);
 }
 
 module.exports.getID = getID
