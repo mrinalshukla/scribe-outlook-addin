@@ -8,6 +8,7 @@ import "../../assets/icon-16.png";
 import "../../assets/icon-32.png";
 import "../../assets/icon-80.png";
 
+const database = require("../signaturecommands/database.js");
 const quotes = require('../randomquotes/randomquotes.js');
 
 /* global document, Office */
@@ -17,6 +18,7 @@ Office.onReady(info => {
         document.getElementById("sideload-msg").style.display = "none";
         document.getElementById("app-body").style.display = "flex";
         returnSignatureTitleLoop();
+        document.getElementById("signatureDropdown").onclick = populateTextbox;
         //document.getElementById("edit_signature_popup").onclick = run;
         //document.getElementById("add_signature").onclick = applySignature;
   }
@@ -53,4 +55,12 @@ function returnSignatureTitleLoop(){
       option.innerHTML = signatureID;
       signatureDropdown.appendChild(option);
   }
+}
+
+function populateTextbox() {
+  var signatureList = Office.context.roamingSettings.get("signatureList");
+  var signatureId = document.getElementById("signatureDropdown").value;
+  var returnedSignature = database.getSignatureByID(signatureID);
+  var signatureQuote = database.getQuote(returnedSignature);
+  Office.context.document.item.quote.setSelectedDataAsync(signatureQuote);
 }
