@@ -1,41 +1,5 @@
 const database = require('../signaturecommands/database.js');
 
-//Office.initialize = initializeStorage;
-
-// Initial Signature Databse
-var signatureDataBase = {'Steve Jobs':'"Stay hungry, stay foolish." -Steve Jobs',
-            'JFK':'"Those who dare to fail miserably can achieve greatly." -John F. Kennedy',
-            'Plato':'"The greatest wealth is to live content with little." - Plato'};
-
-//var myStorage = window.localStorage;
-/*
-var signatureDropdown = [{
-    title : 'Steve Jobs',
-    contents : '"Stay hungry, stay foolish." -Steve Jobs'
-},
-{
-    title : 'JFK',
-    contents: '"Those who dare to fail miserably can achieve greatly." -John F. Kennedy'
-},
-{
-    title : 'Plato',
-    contents : '"The greatest wealth is to live content with little." - Plato'
-}] */
-
-/*function returnQuote (Quote) {
-    var quote = localStorage.getItem[Quote];
-    return quote;
-}*/
-
-/*function addQuote (title) {
-    localStorage.setItem(title, signaturedropdown(title))
-
-}*/
-
-/*function initializeStorage () {
-    myStorage = window.localStorage;
-}*/
-
 // Dropdown List Function
 function displaySignatures () {
     document.getElementById("signatureDropdown").classList.toggle("show");
@@ -72,18 +36,34 @@ function returnSignatures (signatureList) {
     }
 }
 // Testing the implementation of the returnSignatures function differently
-function returnDropdown (signatureDropdown) {
+/*function returnTitleLoop () {
     var select= document.getElementById("signatureDropdown");
 
     for (i=0; i < signatureDropdown.length; i++) {
+        var signatureList = Office.context.roamingSettings.get("signatureList");
         var title = document.createElement("title");
-        title.text = title.value = database.getTitle(signatureDropdown[i])
-        select.add(title,0);
+        title.text = title.value = database.getID(signatureList[i])
+        select.add(title,);
         
     }
-}
+}*/
+
+function returnTitleLoop(){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    var signatureDropdown = document.getElementById("signatureDropdown");
+    console.log("Loop is getting called.")
+    
+    for (i=0; i < signatureList.length; i++){
+        var signatureID = database.getID(signatureList[i]);
+        var option = document.createElement("option");
+        option.value = signatureID;
+        option.innerHTML = signatureID;
+        signatureDropdown.appendChild(option);
+    }
+}  
 
 module.exports.displaySignatures = displaySignatures
 module.exports.returnQuote = returnQuote
 module.exports.returnSignatures = returnSignatures
 module.exports.returnDropdown = returnDropdown
+module.exports.returnTitleLoop = returnTitleLoop

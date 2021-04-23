@@ -33,10 +33,16 @@ function setSignature (){
     var phone = document.getElementById("phone").value;
     var website = document.getElementById("website").value;
     var quote = document.getElementById("quote").value;
-    var IDSignature = firstName + quote.substr(0,10);
+    var signatureIdValue = document.getElementById("signatureId").value;
+    if (signatureIdValue == ""){
+        signatureId = "Signature " + (signatureList.length + 1);
+    }
+    else {
+        signatureId = signatureIdValue;
+    }
 
     var signatureJSON = {
-        "ID" : IDSignature,
+        "Id" : signatureId,
         "details": {
             "firstName" : firstName,
             "lastName" : lastName,
@@ -55,21 +61,30 @@ function setSignature (){
           console.error(`Action failed with message ${result.error.message}`);
         } else {
           console.log(`Settings saved with status: ${result.status}`);
+          addItemToDropdown();
         }
       });
 }
 
 function setNewSignature (){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+
     var firstName = document.getElementById("firstName").value;
     var lastName = document.getElementById("lastName").value;
     var title = document.getElementById("title").value;
     var phone = document.getElementById("phone").value;
     var website = document.getElementById("website").value;
     var quote = document.getElementById("quote").value;
-    var IDSignature = firstName + quote.substr(0,10);
+    var signatureIdValue = document.getElementById("signatureId").value;
+    if (signatureIdValue == ""){
+        signatureId = "Signature " + (signatureList.length + 1);
+    }
+    else {
+        signatureId = signatureIdValue;
+    }
 
     var signatureJSON = [{
-        "ID" : IDSignature,
+        "Id" : signatureId,
         "details": {
             "firstName" : firstName,
             "lastName" : lastName,
@@ -87,15 +102,16 @@ function setNewSignature (){
           console.error(`Action failed with message ${result.error.message}`);
         } else {
           console.log(`Settings saved with status: ${result.status}`);
+          addItemToDropdown();
         }
       });
 }
 
 //https://www.w3schools.com/js/js_json_objects.asp on info for how get JSON objects
 
-function getID(signatureJSON){
-    var signatureID = signatureJSON.ID;
-    return signatureID;
+function getId(signatureJSON){
+    var signatureId = signatureJSON.Id;
+    return signatureId;
 }
 
 function getFirstName(signatureJSON){
@@ -150,17 +166,18 @@ function clearList(){
           console.log(`Settings saved with status: ${result.status}`);
         }
       });
+    var signatureList = Office.context.roamingSettings.get("signatureList");
 }
 
-function getSignatureByID(IDSignature){
+function getSignatureById(signatureId){
     var signatureList = Office.context.roamingSettings.get("signatureList");
 
     for (i=0; i < signatureList.length; i++){
         var signatureJSON = signatureList[i];
-        if (getID(signatureJSON) == null){
+        if (getId(signatureJSON) == null){
             continue;
         }
-        else if (getID(signatureJSON) == IDSignature){
+        else if (getId(signatureJSON) == signatureId){
             return signatureJSON;
         }
     }
@@ -173,7 +190,7 @@ function returnSignatureList(){
     return signatureList;
 }
 
-function returnSignatureByID(){
+function returnSignatureById(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
     var quote = document.getElementById("quote").value;
 
@@ -186,11 +203,8 @@ function returnSignatureByID(){
     }
     else{
         if(signatureList.length !=0){
-            var firstName = document.getElementById("firstName").value;
-            var quote = document.getElementById("quote").value;
-            var IDSignature = firstName + quote.substr(0,10);
-
-            var returnedSignature = getSignatureByID(IDSignature);
+            var signatureId = document.getElementById("signatureDropdown").value;
+            var returnedSignature = getSignatureById(signatureId);
             var signatureQuote = getQuote(returnedSignature);
             return signatureQuote;
         }
@@ -198,15 +212,14 @@ function returnSignatureByID(){
     }
 }
 
-function removeSignatureByID(){
+function removeSignatureById(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
 
-    var firstName = document.getElementById("firstName").value;
-    var quote = document.getElementById("quote").value;
-    var IDSignature = firstName + quote.substr(0,10);
-
-    var returnedSignature = getSignatureByID(IDSignature);
+    var signatureId = document.getElementById("signatureDropdown").value;
+    var returnedSignature = getSignatureById(signatureId);
     var indexOfSignature = signatureList.indexOf(returnedSignature);
+
+    removeItemFromDropdown(returnedSignature);
     signatureList.splice(indexOfSignature,1);
 
     Office.context.roamingSettings.saveAsync(function(result) {
@@ -218,7 +231,58 @@ function removeSignatureByID(){
       });
 }
 
-module.exports.getID = getID
+function addItemToDropdown(){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    var signatureId = getId(signatureList[signatureList.length - 1]);
+    var option = document.createElement("option");
+    option.value = signatureId;
+    option.innerHTML = signatureId;
+    signatureDropdown.appendChild(option);
+}
+
+function removeItemFromDropdown(returnedSignature){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    var indexOfSignature = signatureList.indexOf(returnedSignature);
+    var signatureDropdown = document.getElementById("signatureDropdown");;
+    signatureDropdown.remove(indexOfSignature + 1);
+}
+
+function populateTextbox() {
+    //var signatureList = Office.context.roamingSettings.get("signatureList");
+  
+    var signatureId = document.getElementById("signatureDropdown").value;
+    if (signatureId == "hide"){
+        document.getElementById("firstName").value = "";
+        document.getElementById("lastName").value = "";
+        document.getElementById("title").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("website").value = "";
+        document.getElementById("quote").value = "Welcome to Polaris!";
+        document.getElementById("signatureId").value = "";
+    }
+    else {
+        var returnedSignature = getSignatureById(signatureId);
+
+        var firstName = getFirstName(returnedSignature);
+        var lastName = getLastName(returnedSignature);
+        var title = getTitle(returnedSignature);
+        var phone = getPhone(returnedSignature);
+        var website = getWebsite(returnedSignature);
+        var quote = getQuote(returnedSignature);
+        var defaultVal = getIsDefault(returnedSignature);
+
+        document.getElementById("firstName").value = firstName;
+        document.getElementById("lastName").value = lastName;
+        document.getElementById("title").value = title;
+        document.getElementById("phone").value = phone;
+        document.getElementById("website").value = website;
+        document.getElementById("quote").value = quote;
+        document.getElementById("signatureId").value = signatureId;
+    }
+    
+  }
+
+module.exports.getId = getId
 module.exports.getFirstName = getFirstName
 module.exports.getLastName = getLastName
 module.exports.getTitle = getTitle
@@ -227,6 +291,7 @@ module.exports.getWebsite = getWebsite
 module.exports.getQuote = getQuote
 module.exports.getIsDefault = getIsDefault
 module.exports.extend = extend
-module.exports.removeSignatureByID = removeSignatureByID
-module.exports.getSignatureByID = getSignatureByID 
+module.exports.removeSignatureById = removeSignatureById
+module.exports.getSignatureById = getSignatureById 
 module.exports.clearList = clearList 
+module.exports.populateTextbox = populateTextbox
