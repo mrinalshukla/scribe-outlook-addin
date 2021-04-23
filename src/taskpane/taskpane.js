@@ -17,8 +17,8 @@ Office.onReady(info => {
     if (info.host === Office.HostType.Outlook) {
         document.getElementById("sideload-msg").style.display = "none";
         document.getElementById("app-body").style.display = "flex";
+        //populateTextbox();
         returnSignatureTitleLoop();
-        document.getElementById("signatureDropdown").onclick = populateTextbox;
         //document.getElementById("edit_signature_popup").onclick = run;
         //document.getElementById("add_signature").onclick = applySignature;
   }
@@ -49,18 +49,12 @@ function returnSignatureTitleLoop(){
   console.log("Signature list correctly called.");
   
   for (var i=0; i < signatureListLength; i++){
-      var signatureID = getID(signatureList[i]);
+      var signatureId = getId(signatureList[i]);
       var option = document.createElement("option");
-      option.value = signatureID;
-      option.innerHTML = signatureID;
+      option.value = signatureId;
+      option.innerHTML = signatureId;
       signatureDropdown.appendChild(option);
   }
 }
 
-function populateTextbox() {
-  var signatureList = Office.context.roamingSettings.get("signatureList");
-  var signatureId = document.getElementById("signatureDropdown").value;
-  var returnedSignature = database.getSignatureByID(signatureID);
-  var signatureQuote = database.getQuote(returnedSignature);
-  Office.context.document.item.quote.setSelectedDataAsync(signatureQuote);
-}
+

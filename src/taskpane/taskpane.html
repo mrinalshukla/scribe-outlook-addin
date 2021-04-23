@@ -44,8 +44,8 @@
             <div class="grid-item firstName">
                 <input type="text" id="firstName" name="firstName" placeholder="First Name" style= "height: 70%">
             </div>
-            <div class="grid-item signatureID">
-                <input type="text" id="signatureID" name="signatureID" placeholder="Signature Name" style= "height: 70%">
+            <div class="grid-item signatureId">
+                <input type="text" id="signatureId" name="signatureId" placeholder="Signature Name" style= "height: 70%">
             </div>
             <div class="grid-item lastName">
                 <input type="text" id="lastName" name="lastName" placeholder="Last Name" style= "height: 70%">
@@ -70,7 +70,7 @@
                 </button>
             </div>
             <div>
-                <button class ="button ms-welcome__action.ms-Button--hero" title="Delete Selected Signature" style = "width: 50px;"  onclick="removeSignatureByID()">
+                <button class ="button ms-welcome__action.ms-Button--hero" title="Delete Selected Signature" style = "width: 50px;"  onclick="removeSignatureById()">
                     <i class="fa fa-trash"></i>
                 </button>
             </div>
@@ -87,17 +87,11 @@
         </div>
         
         <div>
-            <select id="signatureDropdown">
+            <select id="signatureDropdown" onclick="populateTextbox()">
                 <option value="hide">Select a Signature...</option>
           </select>
-            <!--<select id="signature">
-                <option value="hide">Select a Signature...</option>
-                <option value="test_signature_01">Signature 01</option>
-                 <option value="test_signature_01">Signature 02</option>
-                 <option value="test_signature_01">Signature 03</option>
-          </select>-->
         </div>
-        <div class ="button applySignature" title="Apply Signature at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync(returnSignatureByID())'>
+        <div class ="button applySignature" title="Apply Signature at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync(returnSignatureById())'>
             <i class="fa fa-pencil"></i>
             Apply Signature
         </div>
@@ -109,10 +103,6 @@
         <div class ="button clearList" title="Clears list" onclick="clearList()">
             Clear List
         </div>
-        <!--<div class ="button applySignature" title="Apply Signature at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync("Example Signature")'>
-            <i class="fa fa-pencil"></i>
-            Apply Signature
-        </div>-->
     </main>
 </body>
 
