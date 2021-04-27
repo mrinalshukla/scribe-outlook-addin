@@ -108,32 +108,37 @@ b {
 
 .firstName {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
 }
 
 .lastName {
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
 }
 
 .title {
     grid-column: 1 / span 2;
-    grid-row: 2;
+    grid-row: 3;
 }
 
 .phone {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 4;
 }
 
 .website {
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 4;
 }
 
 .quote {
     grid-column: 1 / span 2;
-    grid-row: 4;
+    grid-row: 5;
+}
+
+.signatureId {
+    grid-column: 1 / span 2;
+    grid-row: 1;
 }
 
 .flex-container {
@@ -150,8 +155,26 @@ b {
 }
 
 .applySignature {
-    /*position: fixed; */
+    position: fixed;
     bottom: 0px;
+    right: 0px;
+    width: 91%;
+    border: none;
+    border-radius: 8px;
+}
+
+.clearList {
+    position: fixed;
+    bottom: 6%;
+    right: 0px;
+    width: 91%;
+    border: none;
+    border-radius: 8px;
+}
+
+.applySignatureList {
+    position: fixed;
+    bottom: 12%;
     right: 0px;
     width: 91%;
     border: none;

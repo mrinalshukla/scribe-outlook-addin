@@ -41,11 +41,11 @@
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: grid;">
         <div class="grid-container">
+            <div class="grid-item signatureId">
+                <input type="text" id="signatureId" name="signatureId" placeholder="Signature Name" style= "width: 97%; height: 70%">
+            </div>
             <div class="grid-item firstName">
                 <input type="text" id="firstName" name="firstName" placeholder="First Name" style= "height: 70%">
-            </div>
-            <div class="grid-item signatureId">
-                <input type="text" id="signatureId" name="signatureId" placeholder="Signature Name" style= "height: 70%">
             </div>
             <div class="grid-item lastName">
                 <input type="text" id="lastName" name="lastName" placeholder="Last Name" style= "height: 70%">
@@ -96,11 +96,12 @@
             Apply Signature
         </div>
         <div class ="button applySignatureList" title="Apply Signature List at Cursor Location" onclick='Office.context.mailbox.item.body.setSelectedDataAsync(returnSignatureList())'>
-            <i class="fa fa-pencil"></i>
+            <i class="fa fa-archive"></i>
             Return Signature List
         </div>
         <div>
         <div class ="button clearList" title="Clears list" onclick="clearList()">
+            <i class="fa fa-ban"></i>
             Clear List
         </div>
     </main>
