@@ -9,7 +9,7 @@ import "../../assets/icon-32.png";
 import "../../assets/icon-80.png";
 
 const database = require("../signaturecommands/database.js");
-const quotes = require('../randomquotes/randomquotes.js');
+//const quotes = require('../randomquotes/randomquotes.js');
 
 /* global document, Office */
 
