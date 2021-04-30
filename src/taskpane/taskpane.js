@@ -45,28 +45,13 @@ function applySignature() {
 function returnSignatureTitleLoop(){
   var signatureList = Office.context.roamingSettings.get("signatureList");
   var signatureDropdown = document.getElementById("signatureDropdown");
-  //console.log("Signature list correctly called.");
-
-  if (signatureList == undefined){
+  console.log("Signature list correctly called.");
+  
+  for (var i=0; i < signatureList.length; i++){
+    var signatureId = getId(signatureList[i]);
     var option = document.createElement("option");
-    option.value = "hide";
-    option.innerHTML = "Welcome To Polaris!";
+    option.value = signatureId;
+    option.innerHTML = signatureId;
     signatureDropdown.appendChild(option);
   }
-  else{
-    for (var i=0; i < signatureList.length; i++){
-      var signatureId = getId(signatureList[i]);
-      var option = document.createElement("option");
-      option.value = signatureId;
-      option.innerHTML = signatureId;
-      if (getIsDefault(signatureId) == true){
-        signatureDropdown.insertBefore(option,signatureDropdown[0]);
-      }
-      else{
-        signatureDropdown.appendChild(option);
-      }
-    }
-  }
 }
-
-module.exports.returnSignatureTitleLoop = returnSignatureTitleLoop;
