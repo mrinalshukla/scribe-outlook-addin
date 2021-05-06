@@ -1,0 +1,58 @@
+<testExecutions version="1">
+<file path="test/databaseTest.js">
+<testCase name="getID: Grabs ID number from JSON object" duration="1"/>
+<testCase name="getFirstName: Grabs first name from JSON object" duration="0"/>
+<testCase name="getLastName: Grabs last name from JSON object" duration="0"/>
+<testCase name="getTitle: Grabs title from JSON object" duration="0"/>
+<testCase name="getPhone: Grabs phone from JSON object" duration="0"/>
+<testCase name="getWebsite: Grabs website from JSON object" duration="0"/>
+<testCase name="getQuote: Grabs quote from JSON object" duration="0"/>
+<testCase name="getIsDefault: Sees if signature is the default" duration="0"/>
+<testCase name="getID: Grabs ID number from specific JSON Object in a list" duration="2">
+<failure message="database.getIDNumber is not a function"><![CDATA[TypeError: database.getIDNumber is not a function
+    at Context.<anonymous> (test/databaseTest.js:130:38)
+    at processImmediate (internal/timers.js:461:21)]]></failure>
+</testCase>
+<testCase name="getIsDefault: Sees if signature is false in the second JSON object from list" duration="0"/>
+<testCase name="addJSON: Adds the newJsonObject into signatureList" duration="0">
+<failure message="database.getIDNumber is not a function"><![CDATA[TypeError: database.getIDNumber is not a function
+    at Context.<anonymous> (test/databaseTest.js:149:31)
+    at processImmediate (internal/timers.js:461:21)]]></failure>
+</testCase>
+<testCase name="removeJSON: Remove a signature from signatureList" duration="1">
+<failure message="Office is not defined"><![CDATA[ReferenceError: Office is not defined
+    at Object.removeSignatureByID (src/signaturecommands/database.js:216:25)
+    at Context.<anonymous> (test/databaseTest.js:158:18)
+    at processImmediate (internal/timers.js:461:21)]]></failure>
+</testCase>
+<testCase name="getSignatureByID: Retrieve a whole signatureJSON by ID" duration="0">
+<failure message="Office is not defined"><![CDATA[ReferenceError: Office is not defined
+    at Object.getSignatureByID (src/signaturecommands/database.js:173:25)
+    at Context.<anonymous> (test/databaseTest.js:165:31)
+    at processImmediate (internal/timers.js:461:21)]]></failure>
+</testCase>
+<testCase name="button clearList: Removes every signature from list" duration="0">
+<failure message="Office is not defined"><![CDATA[ReferenceError: Office is not defined
+    at Object.getSignatureByID (src/signaturecommands/database.js:173:25)
+    at Context.<anonymous> (test/databaseTest.js:171:31)
+    at processImmediate (internal/timers.js:461:21)]]></failure>
+</testCase>
+<testCase name="clearList: Removes every signature from list" duration="0">
+<failure message="Office is not defined"><![CDATA[ReferenceError: Office is not defined
+    at Object.getSignatureByID (src/signaturecommands/database.js:173:25)
+    at Context.<anonymous> (test/databaseTest.js:177:31)
+    at processImmediate (internal/timers.js:461:21)]]></failure>
+</testCase>
+</file>
+<file path="test/randomquotesTest.js">
+<testCase name="Random Quote: Grabs a random quote form the internet" duration="3"/>
+</file>
+<file path="test/signaturedropdowntest.js">
+<testCase name="ID Number: Return signatures from list" duration="0">
+<failure message="document is not defined"><![CDATA[ReferenceError: document is not defined
+    at Object.returnSignatures (src/signaturedropdown/signaturedropdown.js:30:17)
+    at Context.<anonymous> (test/signaturedropdowntest.js:35:37)
+    at processImmediate (internal/timers.js:461:21)]]></failure>
+</testCase>
+</file>
+</testExecutions>

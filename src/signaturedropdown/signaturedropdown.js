@@ -4,7 +4,7 @@ const database = require('../signaturecommands/database.js');
 function displaySignatures () {
     document.getElementById("signatureDropdown").classList.toggle("show");
 }
-
+/*
 // Close Dropdown if user clicks outside of the menu
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
@@ -17,7 +17,8 @@ window.onclick = function(event) {
             }
         }
     }
-}
+} */
+
 // Function to return a quote
 function returnQuote (Quote1) {
     return signatureDataBase[Quote1];

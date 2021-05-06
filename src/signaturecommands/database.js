@@ -259,4 +259,4 @@ module.exports.extend = extend
 module.exports.removeSignatureByID = removeSignatureByID
 module.exports.getSignatureByID = getSignatureByID 
 module.exports.clearList = clearList 
-module.exports.returnSignatureTitleLoop = returnSignatureTitleLoop 
+//module.exports.returnSignatureTitleLoop = returnSignatureTitleLoop 
