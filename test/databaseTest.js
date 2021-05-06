@@ -165,3 +165,9 @@ describe('getSignatureByID', function() {
         assert.equal(database.getSignatureByID(signatureList, 1), signatureList[0]);
     });
 });
+
+describe('button clearList', function() {
+    it('Removes every signature from list', function () {
+        assert.equal(database.getSignatureByID(signatureList));
+    });
+});
