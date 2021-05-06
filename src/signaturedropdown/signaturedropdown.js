@@ -65,5 +65,4 @@ function returnTitleLoop(){
 module.exports.displaySignatures = displaySignatures
 module.exports.returnQuote = returnQuote
 module.exports.returnSignatures = returnSignatures
-module.exports.returnDropdown = returnDropdown
 module.exports.returnTitleLoop = returnTitleLoop
