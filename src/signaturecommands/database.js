@@ -1,7 +1,6 @@
 //https://docs.microsoft.com/en-us/javascript/api/outlook/office.roamingsettings?view=outlook-js-preview
     //    saveAsync method to save any changes in JSON file 
 
-const taskpane = require('../taskpane/taskpane.js');
 
 //This callback method is OPTIONAL.  Can be removed from .saveAsync().
 function saveMyAppSettingsCallback(asyncResult) {
@@ -157,7 +156,15 @@ function getIsDefault(signatureJSON){
 }
 
 function clearList(){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+
+    for(i=0 ; i < signatureList.length; i++){
+        var returnedSignature = signatureList.indexOf(i);
+        removeItemFromDropdown(returnedSignature);
+    }
+
     Office.context.roamingSettings.remove("signatureList");
+    Office.context.roamingSettings.set("signatureList", []);
     Office.context.roamingSettings.saveAsync(function(result) {
         if (result.status !== Office.AsyncResultStatus.Succeeded) {
           console.error(`Action failed with message ${result.error.message}`);
