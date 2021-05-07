@@ -172,10 +172,10 @@ function getIsDefault(signatureJSON){
 
 function clearList(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
+    var signatureDropdown = document.getElementById("signatureDropdown");
 
-    for(i=0 ; i < signatureList.length; i++){
-        var returnedSignature = signatureList.indexOf(i);
-        removeItemFromDropdown(returnedSignature);
+    for(var i=0 ; i < signatureList.length; i++){
+        signatureDropdown.remove(1);
     }
 
     Office.context.roamingSettings.remove("signatureList");
@@ -187,7 +187,6 @@ function clearList(){
           console.log(`Settings saved with status: ${result.status}`);
         }
       });
-    var signatureList = Office.context.roamingSettings.get("signatureList");
 }
 
 function getSignatureById(signatureId){
@@ -235,15 +234,45 @@ function returnSignatureById(){
 
 function removeSignatureById(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
-
     var signatureId = document.getElementById("signatureDropdown").value;
+    var signatureIdInner = document.getElementById("signatureDropdown").innerHTML;
     var returnedSignature = getSignatureById(signatureId);
-    if (signatureId !== "hide") {
+    var indexOfSignature = signatureList.indexOf(returnedSignature);
 
-        var indexOfSignature = signatureList.indexOf(returnedSignature);
+    if (signatureId !== "hide" && signatureIdInner !== "Select a Signature...") {
+        if (signatureList.length > 1 && getIsDefault(returnedSignature) == true){
+            if (signatureList.length - 1 == indexOfSignature){
+                var newSignature = signatureList[indexOfSignature - 1];
+            }
+            else{
+                var newSignature = signatureList[indexOfSignature + 1];
+            }
+            var indexOfNewSignature = signatureList.indexOf(newSignature);
+            var updatedSignatureId = getId(newSignature);
+            var firstName = getFirstName(newSignature);
+            var lastName = getLastName(newSignature);
+            var title = getTitle(newSignature);
+            var phone = getPhone(newSignature);
+            var website = getWebsite(newSignature);
+            var quote = getQuote(newSignature);
 
+            var updatedSignature = {
+                "Id" : updatedSignatureId,
+                "details": {
+                    "firstName" : firstName,
+                    "lastName" : lastName,
+                    "title" : title,
+                    "phone" : phone,
+                    "website" : website,
+                    "quote" : quote
+                },
+                "isDefault" : true
+            }
+            signatureList.splice(indexOfNewSignature,1,updatedSignature)
+        }
         removeItemFromDropdown(returnedSignature);
         signatureList.splice(indexOfSignature,1);
+
         Office.context.roamingSettings.saveAsync(function(result) {
             if (result.status !== Office.AsyncResultStatus.Succeeded) {
             console.error(`Action failed with message ${result.error.message}`);
@@ -263,7 +292,7 @@ function addItemToDropdown(){
 
     option.value = signatureId;
     option.innerHTML = signatureId;
-    signatureDropdown.appendChild(option); 
+    signatureDropdown.appendChild(option);
     
 }
 
@@ -297,9 +326,10 @@ function populateTextbox() {
 
 function setDefault(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
-    var signatureFromDropdown = document.getElementById("signatureDropdown").value;
+    var signatureFromDropdownValue = document.getElementById("signatureDropdown").value;
+    var signatureFromDropdownInner = document.getElementById("signatureDropdown").innerHTML;
 
-    if(signatureFromDropdown !== "hide"){
+    if(signatureFromDropdownValue !== "hide" && signatureFromDropdownInner !== "Select a Signature..."){
         for (var i=0; i < signatureList.length; i++){
             var signatureDefaultValue = getIsDefault(signatureList[i]);
             if (signatureDefaultValue == true){
