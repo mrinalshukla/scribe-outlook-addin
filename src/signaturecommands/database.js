@@ -246,7 +246,7 @@ function addItemToDropdown(){
 function removeItemFromDropdown(returnedSignature){
     var signatureList = Office.context.roamingSettings.get("signatureList");
     var indexOfSignature = signatureList.indexOf(returnedSignature);
-    var signatureDropdown = document.getElementById("signatureDropdown");;
+    var signatureDropdown = document.getElementById("signatureDropdown");
     signatureDropdown.remove(indexOfSignature + 1);
 }
 
@@ -273,67 +273,70 @@ function populateTextbox() {
 
 function setDefault(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
-    var signatureId = document.getElementById("signatureDropdown").value;
-    var returnedSignature = getSignatureById(signatureId);
-    var indexOfSignature = signatureList.indexOf(returnedSignature);
+    var signatureFromDropdown = document.getElementById("signatureDropdown").value;
 
-    var firstName = getFirstName(returnedSignature);
-    var lastName = getLastName(returnedSignature);
-    var title = getTitle(returnedSignature);
-    var phone = getPhone(returnedSignature);
-    var website = getWebsite(returnedSignature);
-    var quote = getQuote(returnedSignature);
+    if(signatureFromDropdown !== "hide"){
+        for (var i=0; i < signatureList.length; i++){
+            var signatureDefaultValue = getIsDefault(signatureList[i]);
+            if (signatureDefaultValue == true){
+                var signatureId = getId(signatureList[i]);
+                var firstName = getFirstName(signatureList[i]);
+                var lastName = getLastName(signatureList[i]);
+                var title = getTitle(signatureList[i]);
+                var phone = getPhone(signatureList[i]);
+                var website = getWebsite(signatureList[i]);
+                var quote = getQuote(signatureList[i]);
 
-    for (var i=0; i < signatureList.length; i++){
-        var signatureDefaultValue = getIsDefault(signatureList[i]);
-        if (signatureDefaultValue == true){
-            var signatureId = getId(signatureList[i]);
-            var firstName = getFirstName(signatureList[i]);
-            var lastName = getLastName(signatureList[i]);
-            var title = getTitle(signatureList[i]);
-            var phone = getPhone(signatureList[i]);
-            var website = getWebsite(signatureList[i]);
-            var quote = getQuote(signatureList[i]);
-
-            var updatedSignature = {
-                "Id" : signatureId,
-                "details": {
-                    "firstName" : firstName,
-                    "lastName" : lastName,
-                    "title" : title,
-                    "phone" : phone,
-                    "website" : website,
-                    "quote" : quote
-                },
-                "isDefault" : false
+                var updatedSignature = {
+                    "Id" : signatureId,
+                    "details": {
+                        "firstName" : firstName,
+                        "lastName" : lastName,
+                        "title" : title,
+                        "phone" : phone,
+                        "website" : website,
+                        "quote" : quote
+                    },
+                    "isDefault" : false
+                }
+                signatureList.splice(i,1,updatedSignature)
             }
-            signatureList.splice(i,1,updatedSignature)
         }
-    }
 
-    var updatedSignature = {
-        "Id" : signatureId,
-        "details": {
-            "firstName" : firstName,
-            "lastName" : lastName,
-            "title" : title,
-            "phone" : phone,
-            "website" : website,
-            "quote" : quote
-        },
-        "isDefault" : true
-    }
+        var signatureId = document.getElementById("signatureDropdown").value;
+        var returnedSignature = getSignatureById(signatureId);
+        var indexOfSignature = signatureList.indexOf(returnedSignature);
+        var firstName = getFirstName(returnedSignature);
+        var lastName = getLastName(returnedSignature);
+        var title = getTitle(returnedSignature);
+        var phone = getPhone(returnedSignature);
+        var website = getWebsite(returnedSignature);
+        var quote = getQuote(returnedSignature);
 
-    signatureList.splice(indexOfSignature,1,updatedSignature)
-
-    Office.context.roamingSettings.set("signatureList", signatureList);
-    Office.context.roamingSettings.saveAsync(function(result) {
-        if (result.status !== Office.AsyncResultStatus.Succeeded) {
-            console.error(`Action failed with message ${result.error.message}`);
-        } else {
-            console.log(`Settings saved with status: ${result.status}`);
+        var updatedSignature = {
+            "Id" : signatureId,
+            "details": {
+                "firstName" : firstName,
+                "lastName" : lastName,
+                "title" : title,
+                "phone" : phone,
+                "website" : website,
+                "quote" : quote
+            },
+            "isDefault" : true
         }
-        });
+
+        signatureList.splice(indexOfSignature,1,updatedSignature)
+
+        Office.context.roamingSettings.set("signatureList", signatureList);
+        Office.context.roamingSettings.saveAsync(function(result) {
+            if (result.status !== Office.AsyncResultStatus.Succeeded) {
+                console.error(`Action failed with message ${result.error.message}`);
+            } else {
+                console.log(`Settings saved with status: ${result.status}`);
+            }
+            });
+    }
 }
 
 module.exports.getId = getId
