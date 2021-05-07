@@ -1,6 +1,6 @@
 <testExecutions version="1">
 <file path="test/databaseTest.js">
-<testCase name="getID: Grabs ID number from JSON object" duration="1"/>
+<testCase name="getID: Grabs ID number from JSON object" duration="0"/>
 <testCase name="getFirstName: Grabs first name from JSON object" duration="0"/>
 <testCase name="getLastName: Grabs last name from JSON object" duration="0"/>
 <testCase name="getTitle: Grabs title from JSON object" duration="0"/>
@@ -8,7 +8,7 @@
 <testCase name="getWebsite: Grabs website from JSON object" duration="0"/>
 <testCase name="getQuote: Grabs quote from JSON object" duration="0"/>
 <testCase name="getIsDefault: Sees if signature is the default" duration="0"/>
-<testCase name="getID: Grabs ID number from specific JSON Object in a list" duration="2">
+<testCase name="getID: Grabs ID number from specific JSON Object in a list" duration="0">
 <failure message="database.getIDNumber is not a function"><![CDATA[TypeError: database.getIDNumber is not a function
     at Context.<anonymous> (test/databaseTest.js:130:38)
     at processImmediate (internal/timers.js:461:21)]]></failure>
@@ -19,7 +19,7 @@
     at Context.<anonymous> (test/databaseTest.js:149:31)
     at processImmediate (internal/timers.js:461:21)]]></failure>
 </testCase>
-<testCase name="removeJSON: Remove a signature from signatureList" duration="1">
+<testCase name="removeJSON: Remove a signature from signatureList" duration="0">
 <failure message="Office is not defined"><![CDATA[ReferenceError: Office is not defined
     at Object.removeSignatureByID (src/signaturecommands/database.js:216:25)
     at Context.<anonymous> (test/databaseTest.js:158:18)
@@ -45,7 +45,7 @@
 </testCase>
 </file>
 <file path="test/randomquotesTest.js">
-<testCase name="Random Quote: Grabs a random quote form the internet" duration="3"/>
+<testCase name="Random Quote: Grabs a random quote form the internet" duration="1"/>
 </file>
 <file path="test/signaturedropdowntest.js">
 <testCase name="ID Number: Return signatures from list" duration="0">

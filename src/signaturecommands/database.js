@@ -109,9 +109,9 @@ function setNewSignature (){
 
 //https://www.w3schools.com/js/js_json_objects.asp on info for how get JSON objects
 
-function getID(signatureJSON){
-    var signatureID = signatureJSON.ID;
-    return signatureID;
+function getId(signatureJSON){
+    var signatureId = signatureJSON.Id;
+    return signatureId;
 }
 
 function getFirstName(signatureJSON){
@@ -169,15 +169,15 @@ function clearList(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
 }
 
-function getSignatureByID(signatureID){
+function getSignatureById(signatureID){
     var signatureList = Office.context.roamingSettings.get("signatureList");
 
     for (i=0; i < signatureList.length; i++){
         var signatureJSON = signatureList[i];
-        if (getID(signatureJSON) == null){
+        if (getId(signatureJSON) == null){
             continue;
         }
-        else if (getID(signatureJSON) == signatureID){
+        else if (getId(signatureJSON) == signatureID){
             return signatureJSON;
         }
     }
@@ -190,7 +190,7 @@ function returnSignatureList(){
     return signatureList;
 }
 
-function returnSignatureByID(){
+function returnSignatureById(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
     var quote = document.getElementById("quote").value;
 
@@ -212,7 +212,7 @@ function returnSignatureByID(){
     }
 }
 
-function removeSignatureByID(){
+function removeSignatureById(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
 
     var signatureID = document.getElementById("signatureDropdown").value;
@@ -247,7 +247,7 @@ function removeItemFromDropdown(returnedSignature){
     signatureDropdown.remove(indexOfSignature + 1);
 }
 
-module.exports.getID = getID
+module.exports.getId = getId
 module.exports.getFirstName = getFirstName
 module.exports.getLastName = getLastName
 module.exports.getTitle = getTitle
@@ -256,7 +256,7 @@ module.exports.getWebsite = getWebsite
 module.exports.getQuote = getQuote
 module.exports.getIsDefault = getIsDefault
 module.exports.extend = extend
-module.exports.removeSignatureByID = removeSignatureByID
-module.exports.getSignatureByID = getSignatureByID 
+module.exports.removeSignatureById = removeSignatureById
+module.exports.getSignatureById = getSignatureById 
 module.exports.clearList = clearList 
 //module.exports.returnSignatureTitleLoop = returnSignatureTitleLoop 

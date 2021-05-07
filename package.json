@@ -25,7 +25,7 @@
     "stop": "office-addin-debugging stop manifest.xml",
     "validate": "office-addin-manifest validate manifest.xml",
     "watch": "webpack --mode development --watch",
-    "test": "mocha --reporter mocha-sonarqube-reporter test --reporter-options output=xunit.xml"
+    "test": "mocha"
   },
   "dependencies": {
     "chai": "^4.3.3",

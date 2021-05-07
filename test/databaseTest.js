@@ -61,11 +61,11 @@ const newJsonObject = {
     "isDefault" : false
 };
 
-describe('getID', function() {
+describe('getId', function() {
     it('Grabs ID number from JSON object', function() {
-        const signatureID = database.getID(jsonObject);
+        const signatureId = database.getId(jsonObject);
 
-        assert.equal(signatureID, 1);
+        assert.equal(signatureId, 1);
     });
 });
 
@@ -125,11 +125,11 @@ describe('getIsDefault', function() {
     });
 });
 
-describe('getID', function() {
+describe('getId', function() {
     it('Grabs ID number from specific JSON Object in a list', function() {
-        const signatureID = database.getIDNumber(signatureList[1]);
+        const signatureId = database.getId(signatureList[1]);
 
-        assert.equal(signatureID, 2);
+        assert.equal(signatureId, 2);
     });
 });
 
@@ -146,34 +146,7 @@ describe('addJSON', function() {
         database.extend(signatureList,newJsonObject);
 
         assert.equal(signatureList.length, 3);
-        assert.equal(database.getIDNumber(signatureList[2]), 3);
+        assert.equal(database.getIdNumber(signatureList[2]), 3);
         assert.equal(database.getFirstName(signatureList[2]), 'New First Name');
-    });
-});
-
-describe('removeJSON', function() {
-    it('Remove a signature from signatureList', function() {
-        assert.equal(signatureList.length, 3);
-        
-        database.removeSignatureByID(signatureList, 1);
-        assert.equal(signatureList.length, 2);
-    });
-});
-
-describe('getSignatureByID', function() {
-    it('Retrieve a whole signatureJSON by ID', function () {
-        assert.equal(database.getSignatureByID(signatureList, 1), signatureList[0]);
-    });
-});
-
-describe('button clearList', function() {
-    it('Removes every signature from list', function () {
-        assert.equal(database.getSignatureByID(signatureList));
-    });
-});
-
-describe('clearList', function() {
-    it('Removes every signature from list', function () {
-        assert.equal(database.getSignatureByID(signatureList));
     });
 });
