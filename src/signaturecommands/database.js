@@ -173,9 +173,12 @@ function getIsDefault(signatureJSON){
 function clearList(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
 
-    for(i=0 ; i < signatureList.length; i++){
-        var returnedSignature = signatureList.indexOf(i);
-        removeItemFromDropdown(returnedSignature);
+    if (signatureList.length !== 0) {
+        
+        for(var i=0 ; i < signatureList.length; i++){
+            var returnedSignature = signatureList.indexOf(i);
+            removeItemFromDropdown(returnedSignature);
+        }
     }
 
     Office.context.roamingSettings.remove("signatureList");
