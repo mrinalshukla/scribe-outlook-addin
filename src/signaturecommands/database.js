@@ -1,8 +1,7 @@
 //https://docs.microsoft.com/en-us/javascript/api/outlook/office.roamingsettings?view=outlook-js-preview
     //    saveAsync method to save any changes in JSON file 
 
-/*var signatureListDB = Office.context.roamingSettings; //this is 'var _setting' from URL 
-var signatureList = signatureListDB.get("signatureList") */
+const taskpane = require('../taskpane/taskpane.js');
 
 //This callback method is OPTIONAL.  Can be removed from .saveAsync().
 function saveMyAppSettingsCallback(asyncResult) {
@@ -93,7 +92,7 @@ function setNewSignature (){
             "website" : website,
             "quote" : quote
         },
-        "isDefault" : false
+        "isDefault" : true
     }]
 
     Office.context.roamingSettings.set("signatureList", signatureJSON);
@@ -234,53 +233,111 @@ function removeSignatureById(){
 function addItemToDropdown(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
     var signatureId = getId(signatureList[signatureList.length - 1]);
+    var currentSignature = getSignatureById(signatureId);
+    var defaultValue = getIsDefault(currentSignature);
     var option = document.createElement("option");
+
     option.value = signatureId;
     option.innerHTML = signatureId;
-    signatureDropdown.appendChild(option);
+    signatureDropdown.appendChild(option); 
+    
 }
 
 function removeItemFromDropdown(returnedSignature){
     var signatureList = Office.context.roamingSettings.get("signatureList");
     var indexOfSignature = signatureList.indexOf(returnedSignature);
-    var signatureDropdown = document.getElementById("signatureDropdown");;
+    var signatureDropdown = document.getElementById("signatureDropdown");
     signatureDropdown.remove(indexOfSignature + 1);
 }
 
 function populateTextbox() {
-    //var signatureList = Office.context.roamingSettings.get("signatureList");
-  
     var signatureId = document.getElementById("signatureDropdown").value;
-    if (signatureId == "hide"){
-        document.getElementById("firstName").value = "";
-        document.getElementById("lastName").value = "";
-        document.getElementById("title").value = "";
-        document.getElementById("phone").value = "";
-        document.getElementById("website").value = "";
-        document.getElementById("quote").value = "Welcome to Polaris!";
-        document.getElementById("signatureId").value = "";
-    }
-    else {
-        var returnedSignature = getSignatureById(signatureId);
+    var returnedSignature = getSignatureById(signatureId);
 
+    var firstName = getFirstName(returnedSignature);
+    var lastName = getLastName(returnedSignature);
+    var title = getTitle(returnedSignature);
+    var phone = getPhone(returnedSignature);
+    var website = getWebsite(returnedSignature);
+    var quote = getQuote(returnedSignature);
+    var defaultVal = getIsDefault(returnedSignature);
+
+    document.getElementById("firstName").value = firstName;
+    document.getElementById("lastName").value = lastName;
+    document.getElementById("title").value = title;
+    document.getElementById("phone").value = phone;
+    document.getElementById("website").value = website;
+    document.getElementById("quote").value = quote;
+    document.getElementById("signatureId").value = signatureId;
+  }
+
+function setDefault(){
+    var signatureList = Office.context.roamingSettings.get("signatureList");
+    var signatureFromDropdown = document.getElementById("signatureDropdown").value;
+
+    if(signatureFromDropdown !== "hide"){
+        for (var i=0; i < signatureList.length; i++){
+            var signatureDefaultValue = getIsDefault(signatureList[i]);
+            if (signatureDefaultValue == true){
+                var signatureId = getId(signatureList[i]);
+                var firstName = getFirstName(signatureList[i]);
+                var lastName = getLastName(signatureList[i]);
+                var title = getTitle(signatureList[i]);
+                var phone = getPhone(signatureList[i]);
+                var website = getWebsite(signatureList[i]);
+                var quote = getQuote(signatureList[i]);
+
+                var updatedSignature = {
+                    "Id" : signatureId,
+                    "details": {
+                        "firstName" : firstName,
+                        "lastName" : lastName,
+                        "title" : title,
+                        "phone" : phone,
+                        "website" : website,
+                        "quote" : quote
+                    },
+                    "isDefault" : false
+                }
+                signatureList.splice(i,1,updatedSignature)
+            }
+        }
+
+        var signatureId = document.getElementById("signatureDropdown").value;
+        var returnedSignature = getSignatureById(signatureId);
+        var indexOfSignature = signatureList.indexOf(returnedSignature);
         var firstName = getFirstName(returnedSignature);
         var lastName = getLastName(returnedSignature);
         var title = getTitle(returnedSignature);
         var phone = getPhone(returnedSignature);
         var website = getWebsite(returnedSignature);
         var quote = getQuote(returnedSignature);
-        var defaultVal = getIsDefault(returnedSignature);
 
-        document.getElementById("firstName").value = firstName;
-        document.getElementById("lastName").value = lastName;
-        document.getElementById("title").value = title;
-        document.getElementById("phone").value = phone;
-        document.getElementById("website").value = website;
-        document.getElementById("quote").value = quote;
-        document.getElementById("signatureId").value = signatureId;
+        var updatedSignature = {
+            "Id" : signatureId,
+            "details": {
+                "firstName" : firstName,
+                "lastName" : lastName,
+                "title" : title,
+                "phone" : phone,
+                "website" : website,
+                "quote" : quote
+            },
+            "isDefault" : true
+        }
+
+        signatureList.splice(indexOfSignature,1,updatedSignature)
+
+        Office.context.roamingSettings.set("signatureList", signatureList);
+        Office.context.roamingSettings.saveAsync(function(result) {
+            if (result.status !== Office.AsyncResultStatus.Succeeded) {
+                console.error(`Action failed with message ${result.error.message}`);
+            } else {
+                console.log(`Settings saved with status: ${result.status}`);
+            }
+            });
     }
-    
-  }
+}
 
 module.exports.getId = getId
 module.exports.getFirstName = getFirstName
@@ -295,3 +352,4 @@ module.exports.removeSignatureById = removeSignatureById
 module.exports.getSignatureById = getSignatureById 
 module.exports.clearList = clearList 
 module.exports.populateTextbox = populateTextbox
+module.exports.setDefault = setDefault
