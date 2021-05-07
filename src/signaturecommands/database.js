@@ -38,17 +38,33 @@ function setSignature (){
         signatureId = signatureIdValue;
     }
 
-    var signatureJSON = {
-        "Id" : signatureId,
-        "details": {
-            "firstName" : firstName,
-            "lastName" : lastName,
-            "title" : title,
-            "phone" : phone,
-            "website" : website,
-            "quote" : quote
-        },
-        "isDefault" : false
+    if (signatureList.length !== 0){
+        var signatureJSON = {
+            "Id" : signatureId,
+            "details": {
+                "firstName" : firstName,
+                "lastName" : lastName,
+                "title" : title,
+                "phone" : phone,
+                "website" : website,
+                "quote" : quote
+            },
+            "isDefault" : false
+        }
+    }
+    else{
+        var signatureJSON = {
+            "Id" : signatureId,
+            "details": {
+                "firstName" : firstName,
+                "lastName" : lastName,
+                "title" : title,
+                "phone" : phone,
+                "website" : website,
+                "quote" : quote
+            },
+            "isDefault" : true
+        }
     }
 
     extend(signatureList,signatureJSON); 
