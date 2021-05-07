@@ -1,9 +1,3 @@
-/*TODO Find a way to get past the 'ReferenceError: Office is not defined'
-    To get test to run, need to go into database.js and comment out lines 1-11.
-    
-    TODO Update these variables to match current database.js*/
-
-
 const assert = require('chai').assert;
 const database = require('../src/signaturecommands/database.js');
 
@@ -127,7 +121,7 @@ describe('getIsDefault', function() {
 
 describe('getId', function() {
     it('Grabs ID number from specific JSON Object in a list', function() {
-        const signatureId = database.getIdNumber(signatureList[1]);
+        const signatureId = database.getId(signatureList[1]);
 
         assert.equal(signatureId, 2);
     });
@@ -146,46 +140,7 @@ describe('addJSON', function() {
         database.extend(signatureList,newJsonObject);
 
         assert.equal(signatureList.length, 3);
-        assert.equal(database.getIdNumber(signatureList[2]), 3);
+        assert.equal(database.getId(signatureList[2]), 3);
         assert.equal(database.getFirstName(signatureList[2]), 'New First Name');
-    });
-});
-
-describe('removeJSON', function() {
-    it('Remove a signature from signatureList', function() {
-        assert.equal(signatureList.length, 3);
-        
-        database.removeSignatureById(signatureList, 1);
-        assert.equal(signatureList.length, 2);
-    });
-});
-
-describe('getSignatureById', function() {
-    it('Retrieve a whole signatureJSON by ID', function () {
-        assert.equal(database.getSignatureById(signatureList, 1), signatureList[0]);
-    });
-});
-
-describe('removeSignatureById', function() {
-    it('Remove Signature from Database', function () {
-        assert.equal(database.removeSignatureById(), signatureList[0]);
-    });
-});
-
-describe('addItemToDropdown', function() {
-    it('Adds signature to Dropdown List', function () {
-        assert.equal(database.addItemsToDropdown(signatureDropdown, 1), signatureDropdown[0]);
-    });
-});
-
-describe('removeItemToDropdown', function() {
-    it('Removes signature to Dropdown List', function () {
-        assert.equal(database.removeItemsToDropdown(), signatureDropdown[0]);
-    });
-});
-
-describe('populateTextbox', function() {
-    it('Displays Signature Information for each Dropdown Item Selected', function () {
-        assert.equal(database.populateTextbox(returnedSignature));
     });
 });

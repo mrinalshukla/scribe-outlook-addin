@@ -1,7 +1,6 @@
 //https://docs.microsoft.com/en-us/javascript/api/outlook/office.roamingsettings?view=outlook-js-preview
     //    saveAsync method to save any changes in JSON file 
 
-
 //This callback method is OPTIONAL.  Can be removed from .saveAsync().
 function saveMyAppSettingsCallback(asyncResult) {
     if (asyncResult.status == Office.AsyncResultStatus.Failed) {
@@ -223,18 +222,20 @@ function removeSignatureById(){
 
     var signatureId = document.getElementById("signatureDropdown").value;
     var returnedSignature = getSignatureById(signatureId);
-    var indexOfSignature = signatureList.indexOf(returnedSignature);
+    if (signatureId !== "hide") {
 
-    removeItemFromDropdown(returnedSignature);
-    signatureList.splice(indexOfSignature,1);
+        var indexOfSignature = signatureList.indexOf(returnedSignature);
 
-    Office.context.roamingSettings.saveAsync(function(result) {
-        if (result.status !== Office.AsyncResultStatus.Succeeded) {
-          console.error(`Action failed with message ${result.error.message}`);
-        } else {
-          console.log(`Settings saved with status: ${result.status}`);
-        }
-      });
+        removeItemFromDropdown(returnedSignature);
+        signatureList.splice(indexOfSignature,1);
+        Office.context.roamingSettings.saveAsync(function(result) {
+            if (result.status !== Office.AsyncResultStatus.Succeeded) {
+            console.error(`Action failed with message ${result.error.message}`);
+            } else {
+            console.log(`Settings saved with status: ${result.status}`);
+            }
+        });
+    }
 }
 
 function addItemToDropdown(){

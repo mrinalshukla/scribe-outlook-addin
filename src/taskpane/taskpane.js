@@ -4,9 +4,9 @@
  */
 
 // images references in the manifest
-import "../../assets/icon-16.png";
+/*import "../../assets/icon-16.png";
 import "../../assets/icon-32.png";
-import "../../assets/icon-80.png";
+import "../../assets/icon-80.png";*/
 
 const database = require("../signaturecommands/database.js");
 //const quotes = require('../randomquotes/randomquotes.js');
@@ -24,12 +24,12 @@ Office.onReady(info => {
   }
 });
 
-export async function run() {
+/*export async function run() {
   //Found at https://javascript.info/popup-windows
   const params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
   width=0,height=0,left=-1000,top=-1000`;
   open('https://localhost:3000/src/editsignatures/editsignatures.html', 'test', params);
-}
+}*/
 
 /*function applySignature() {
   //Inserts a hardcoded signature at cursor position
