@@ -332,7 +332,7 @@ function setDefault(){
     if(signatureFromDropdownValue !== "hide" && signatureFromDropdownInner !== "Select a Signature..."){
         for (var i=0; i < signatureList.length; i++){
             var signatureDefaultValue = getIsDefault(signatureList[i]);
-            if (signatureDefaultValue == true){
+            if (signatureDefaultValue === true){
                 var signatureId = getId(signatureList[i]);
                 var firstName = getFirstName(signatureList[i]);
                 var lastName = getLastName(signatureList[i]);
