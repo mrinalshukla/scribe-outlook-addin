@@ -292,8 +292,7 @@ function addItemToDropdown(){
 
     option.value = signatureId;
     option.innerHTML = signatureId;
-    signatureDropdown.appendChild(option);
-    
+    signatureDropdown.appendChild(option);   
 }
 
 function removeItemFromDropdown(returnedSignature){
