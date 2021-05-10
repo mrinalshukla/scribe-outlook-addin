@@ -225,8 +225,7 @@ function returnSignatureById(){
         if(signatureList.length !=0){
             var signatureId = document.getElementById("signatureDropdown").value;
             var returnedSignature = getSignatureById(signatureId);
-            var signatureQuote = getQuote(returnedSignature);
-            return signatureQuote;
+            return formatSignature(returnedSignature);
         }
         return "Signature list does not exist.";
     }
@@ -391,6 +390,18 @@ function setDefault(){
             }
             });
     }
+}
+
+function formatSignature(signatureJSON){
+    var signatureFirstName = getFirstName(signatureJSON);
+    var signatureLastName = getLastName(signatureJSON);
+    var signatureTitle = getTitle(signatureJSON);
+    var signaturePhone = getPhone(signatureJSON);
+    var signatureWebsite = getWebsite(signatureJSON);
+    var signatureQuote = getQuote(signatureJSON);
+
+    var formattedSignature = (signatureFirstName + " " + signatureLastName +"\n" + signatureTitle + " " + signaturePhone + " " + signatureWebsite + "\n" + signatureQuote);
+    return formattedSignature;
 }
 
 module.exports.getId = getId
