@@ -74,7 +74,7 @@
                     <bt:Image size="80" resid="Icon.80x80"/>
                   </Icon>
                   <Action xsi:type="ExecuteFunction">
-                    <FunctionName>testFunction</FunctionName>
+                    <FunctionName>applyDefault</FunctionName>
                   </Action>
                 </Control>
               </Group>
@@ -96,11 +96,11 @@
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Scribe Add-in"/>
         <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane"/>
-        <bt:String id="ActionButton.Label" DefaultValue="Perform an action"/>
+        <bt:String id="ActionButton.Label" DefaultValue="Scribe It!"/>
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Opens a pane displaying all available properties."/>
-        <bt:String id="ActionButton.Tooltip" DefaultValue="Perform an action when clicked."/>
+        <bt:String id="ActionButton.Tooltip" DefaultValue="Applies the default signature at cursor position."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

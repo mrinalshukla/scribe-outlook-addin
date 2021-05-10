@@ -8,20 +8,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
     <!-- Office JavaScript API -->
-    <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js" 
-            integrity="sha384-o7EBEUdw09Ox2e5pGUifcIbNddd3xypTCs/RNHZHXO9BRxqWdEstxVzQht2v3PL9" 
-            crossorigin="anonymous">
+    <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js">
     </script>
+
     <script>
-    function testFunction(event) {
 
-        // Implement your custom code here. The following code is a simple example.  
-        Office.context.document.setSelectedDataAsync("ExecuteFunction works.");
+    Office.onReady()
 
-        // Calling event.completed is required. event.completed lets the platform know that processing has completed.
-        event.completed();
+    function applyDefault() {
+
+        var signatureList = Office.context.roamingSettings.get("signatureList");
+
+        for (var i=0; i < signatureList.length; i++){
+            signatureJSON = signatureList[i];
+
+            if (signatureJSON.isDefault) {
+            console.log(signatureList[i]); 
+            var signatureFirstName = signatureJSON.details.firstName;
+            var signatureLastName = signatureJSON.details.lastName;
+            var signatureTitle = signatureJSON.details.title;
+            var signaturePhone = signatureJSON.details.phone;
+            var signatureWebsite = signatureJSON.details.website;
+            var signatureQuote = signatureJSON.details.quote;
+
+            Office.context.mailbox.item.body.setSelectedDataAsync(signatureFirstName + " " + signatureLastName +"\n" + signatureTitle + " " + signaturePhone + " " + signatureWebsite + "\n" + signatureQuote);
+            }         
+        };
     };
-</script>
+    </script>
+
     <title>Scribe Commands</title>
 </head>
 
