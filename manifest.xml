@@ -74,7 +74,7 @@
                     <bt:Image size="80" resid="Icon.80x80"/>
                   </Icon>
                   <Action xsi:type="ExecuteFunction">
-                    <FunctionName>action</FunctionName>
+                    <FunctionName>writeText</FunctionName>
                   </Action>
                 </Control>
               </Group>
@@ -90,7 +90,11 @@
         <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
+<<<<<<< Updated upstream
         <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
+=======
+        <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/src/signaturecommands/signaturecommands.html"/>
+>>>>>>> Stashed changes
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>

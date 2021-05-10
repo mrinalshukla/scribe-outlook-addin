@@ -12,6 +12,16 @@
             integrity="sha384-o7EBEUdw09Ox2e5pGUifcIbNddd3xypTCs/RNHZHXO9BRxqWdEstxVzQht2v3PL9" 
             crossorigin="anonymous">
     </script>
+    <script>
+    function writeText(event) {
+
+        // Implement your custom code here. The following code is a simple example.  
+        Office.context.document.setSelectedDataAsync("ExecuteFunction works. Button ID=");
+
+        // Calling event.completed is required. event.completed lets the platform know that processing has completed.
+        event.completed();
+    };
+</script>
     <title>Scribe Commands</title>
 </head>
 
