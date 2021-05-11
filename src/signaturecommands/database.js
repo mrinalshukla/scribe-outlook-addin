@@ -259,7 +259,7 @@ function removeSignatureById(){
             var updatedSignature = {
                 "Id" : updatedSignatureId,
                 "details": {
-                    "firstName" : firstName,
+                    "firstName" : firstName, 
                     "lastName" : lastName,
                     "title" : title,
                     "phone" : phone,
