@@ -285,7 +285,7 @@ function removeSignatureById(){
 
 function addItemToDropdown(){
     var signatureList = Office.context.roamingSettings.get("signatureList");
-    var signatureId = getId(signatureList[signatureList.length - 1]);
+    var signatureId = getId(signatureList[signatureList.length - 1]); 
     var currentSignature = getSignatureById(signatureId);
     //var defaultValue = getIsDefault(currentSignature);
     var option = document.createElement("option");
