@@ -260,7 +260,7 @@ function removeSignatureById(){
                 "Id" : updatedSignatureId,
                 "details": {
                     "firstName" : firstName, 
-                    "lastName" : lastName,
+                    "lastName" : lastName, 
                     "title" : title,
                     "phone" : phone,
                     "website" : website,
