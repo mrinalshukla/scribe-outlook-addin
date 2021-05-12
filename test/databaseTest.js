@@ -11,7 +11,7 @@ const quote1 = '"The greatest wealth is to live content with little." - Plato';
 const quote2 = '"Stay hungry, stay foolish." -Steve Jobs';
 
 const jsonObject = {
-    "ID" : 1,
+    "Id" : 1,
     "details": {
         "firstName" : 'Juan',
         "lastName" : 'Ruiz',
@@ -24,7 +24,7 @@ const jsonObject = {
 };
 
 const signatureList = [{
-    "ID" : 1,
+    "Id" : 1,
     "details": {
         "firstName" : 'Juan',
         "lastName" : 'Ruiz',
@@ -36,7 +36,7 @@ const signatureList = [{
     "isDefault" : true
 },
 {
-    "ID" : 2,
+    "Id" : 2,
     "details": {
         "firstName" : 'John',
         "lastName" : 'Doe',
@@ -49,7 +49,7 @@ const signatureList = [{
 }];
 
 const newJsonObject = {
-    "ID" : signatureList.length + 1,
+    "Id" : signatureList.length + 1,
     "details": {
         "firstName" : 'New First Name',
         "lastName" : 'New Last Name',
@@ -146,7 +146,7 @@ describe('addJSON', function() {
         database.extend(signatureList,newJsonObject);
 
         assert.equal(signatureList.length, 3);
-        assert.equal(database.getIdNumber(signatureList[2]), 3);
+        assert.equal(database.getId(signatureList[2]), 3);
         assert.equal(database.getFirstName(signatureList[2]), 'New First Name');
     });
 });
